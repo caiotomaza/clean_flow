@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - laravel
+
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "9090:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks:
+            - laravel
+
+    mysql:
+        image: mysql:9.2.0
+        platform: linux/x86_64
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+            MYSQL_USER: ${DB_USERNAME:-username}
+        volumes:
+            - ./.docker/data-base:/var/lib/mysql
+        ports:
+            - "3306:3307"
+        networks:
+            - laravel
+        
+    redis:
+        image: redis:latest
+        networks:
+            - laravel
+
+networks:
+    laravel:
+        driver: bridge
