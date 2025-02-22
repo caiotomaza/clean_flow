@@ -11,7 +11,7 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
             - laravel
-  
+
   back-end:
     build:
       context: .
@@ -39,6 +39,22 @@ services:
       - ./.docker/data-base/data:/var/lib/mysql
     networks:
             - laravel
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: data-base
+      PMA_USER: ${DB_USERNAME:-username}
+      PMA_PASSWORD: ${DB_PASSWORD:-userpass}
+    ports:
+      - "8081:80"
+    depends_on:
+      - data-base
+    networks:
+      - laravel
 
   redis:
       image: redis:alpine
