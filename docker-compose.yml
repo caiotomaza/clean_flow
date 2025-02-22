@@ -3,6 +3,7 @@ version: '3.8'
 services:
   web:
     image: nginx:1.27.4-alpine
+    container_name: web
     ports:
       - "8080:80"
     volumes:
@@ -15,6 +16,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/dockerfile
+    container_name: back-end
     working_dir: /var/www
     volumes:
       - .:/var/www
@@ -24,6 +26,7 @@ services:
 
   data-base:
     image: mysql:8.0
+    container_name: data-base
     restart: always
     environment:
       MYSQL_DATABASE: ${DB_DATABASE:-laravel}
