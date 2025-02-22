@@ -41,7 +41,7 @@ services:
             - laravel
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin:5.2.2
     container_name: phpmyadmin
     restart: always
     environment:
