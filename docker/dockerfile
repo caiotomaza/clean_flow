@@ -1,10 +1,7 @@
 FROM php:8.2-fpm
 
-# Atualizar os repositórios padrão e garantir que todos os pacotes do sistema estejam atualizados
-RUN apt-get update -y && apt-get upgrade -y
-
-# Instalar dependências necessárias
-RUN apt-get install -y \
+# Atualizar os repositórios e instalar dependências necessárias
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -16,25 +13,36 @@ RUN apt-get install -y \
     libmariadb-dev \
     gcc \
     make \
-    && apt-get clean
+    && rm -rf /var/lib/apt/lists/*
 
-# Instalar o Composer
+# Configurar extensões PHP
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip \
+    && pecl install redis \
+    && docker-php-ext-enable redis
+
+# Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Instalar e habilitar Redis
-RUN pecl install redis && docker-php-ext-enable redis
-
-# Configurar o diretório de trabalho
+# Configurar diretório de trabalho
 WORKDIR /var/www
 
-# Copiar o código da aplicação para o diretório do container
-COPY . /var/www
+# Copiar arquivos essenciais para otimizar cache Docker
+COPY composer.json composer.lock ./
 
-# Definir permissões adequadas para o diretório de trabalho
-RUN chown -R www-data:www-data /var/www && chmod -R 775 /var/www/storage
+# Instalar dependências do PHP
+RUN composer install --no-dev --no-scripts --no-autoloader
 
-# Expor a porta 9000 para o PHP-FPM
+# Copiar todo o código da aplicação
+COPY . .
+
+# Ajustar permissões
+RUN composer dump-autoload --optimize \
+    && chown -R www-data:www-data /var/www \
+    && chmod -R 775 /var/www/storage
+
+# Expor porta 9000 para PHP-FPM
 EXPOSE 9000
 
-# Iniciar o PHP-FPM
+# Iniciar PHP-FPM
 CMD ["php-fpm"]
