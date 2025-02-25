@@ -22,4 +22,3 @@ yarn-error.log
 /.vscode
 /.zed
 /.docker/data-base/data
-docker/nginx/certs
