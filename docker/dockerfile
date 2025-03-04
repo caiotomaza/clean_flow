@@ -1,0 +1,40 @@
+FROM php:8.2-fpm
+
+# Atualizar os repositórios padrão e garantir que todos os pacotes do sistema estejam atualizados
+RUN apt-get update -y && apt-get upgrade -y
+
+# Instalar dependências necessárias
+RUN apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    libzip-dev \
+    libmariadb-dev \
+    gcc \
+    make \
+    && apt-get clean
+
+# Instalar o Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Instalar e habilitar Redis
+RUN pecl install redis && docker-php-ext-enable redis
+
+# Configurar o diretório de trabalho
+WORKDIR /var/www
+
+# Copiar o código da aplicação para o diretório do container
+COPY . /var/www
+
+# Definir permissões adequadas para o diretório de trabalho
+RUN chown -R www-data:www-data /var/www && chmod -R 775 /var/www/storage
+
+# Expor a porta 9000 para o PHP-FPM
+EXPOSE 9000
+
+# Iniciar o PHP-FPM
+CMD ["php-fpm"]
