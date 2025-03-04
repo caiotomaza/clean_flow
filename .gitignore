@@ -21,4 +21,8 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+<<<<<<< HEAD
 /.docker/data-base/data
+=======
+/.docker/data-base/data
+>>>>>>> parent of 2487041 (Configurado HTTPS no ambiente localhost)
