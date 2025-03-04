@@ -1,4 +1,23 @@
-## Passo a passo para rodar o projeto
+# 🌎 - Clean Flow
+
+Clean Flow é uma aplicação criada para melhor gestão de resíduos sólidos, destinando-se a empresa do seguimento de saneamento básico, mais especificamente resíduos sólidos (ou lixo). Tendo como foco realizar uma gestão completa desdá entrada até a saída das estações de tratamento de resíduos, com vários sistemas de registros e tecnologias de otimização tendo como principal aplicação para gestão, na  web, onde você acessa pelo navegador as principais funções para administração dos dados coletados com dashboard, relatórios, gestão de acessos e muitos mais, além do mais teremos uma versão mobile em os operadores de campo poderão alimentar o sistema de forma prática e simplificada.
+
+## 📌 - Tecnologias Utilizadas
+- **Laravel v11.43.2**
+- **PHP v8.2.27**
+- **Nginx v1.27.4-alpine**
+- **Mysql v8.0**
+- **Redis vlatest-alpine**
+- **PHP Myadmin:5.2.2**
+- **Docker v3.8**
+
+## 🚀 - Como Rodar o Projeto
+
+### 🔧 - Pré-requisitos
+Antes de começar, instale os seguintes programas na sua máquina:
+- [Docker](https://www.docker.com/);
+
+### ▶️ - Rodando o Projeto
 1. Copie e cole no mesmo local o arquivo ".env.example" e renomeio para ".env";
 
 2. Cole e cole o codigo abaixo no arquivo ".env";
@@ -89,6 +108,17 @@ composer install
 6. Gere a key do projeto Laravel;
 ```sh
 php artisan key:generate
+```
+
+7. Crie as migrations;
+```sh
+php artisan migrate
+```
+
+### ➕ - Extras
+1. Lipar cache e imagens do docker;
+```sh
+docker system prune -a
 ```
 
 Acesse o projeto
