@@ -121,4 +121,7 @@ php artisan migrate
 docker system prune -a
 ```
 
+- Anotações 
+[Link](https://fiusa-my.sharepoint.com/:f:/g/personal/caiotomazas_aluno_unifapce_edu_br/ErgxuRIeIRxNt2-NvK7VDVkB4xsG4IMXUARWDE_juMHQlA?e=S8kqSb).
+
 Acesse o projeto em [http://localhost:8080/](http://localhost:8080/)
