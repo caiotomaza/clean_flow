@@ -1,70 +1,67 @@
 version: '3.8'
 
 services:
-  web:
-    image: nginx:1.27.4-alpine
-    container_name: web
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: app
+    restart: unless-stopped
+    working_dir: /var/www
     ports:
-      - "8080:80"
+    - "9000:9000"
+    volumes:
+      - .:/var/www
+    environment:
+      - APP_ENV=local
+    depends_on:
+      - mysql_clean_flow
+      - redis_clean_flow
+
+  mysql_clean_flow:
+    image: mysql:8.0
+    container_name: mysql_clean_flow
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: clean_flow
+      MYSQL_USER: clean_flow
+      MYSQL_PASSWORD: clean_flow1234
+      MYSQL_ROOT_PASSWORD: clean_flow1234
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin_clean_flow:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_clean_flow
+    restart: unless-stopped
+    depends_on:
+      - mysql_clean_flow
+    environment:
+      PMA_HOST: mysql_clean_flow
+      MYSQL_ROOT_PASSWORD: clean_flow1234
+    ports:
+      - "8083:80"
+
+  nginx_clean_flow:
+    image: nginx:alpine
+    container_name: nginx_clean_flow
+    restart: unless-stopped
+    ports:
+      - "80:80"
     volumes:
       - .:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-            - laravel
-
-  back-end:
-    build:
-      context: .
-      dockerfile: ./docker/dockerfile
-    container_name: back-end
-    working_dir: /var/www
-    volumes:
-      - .:/var/www
-      - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
-    networks:
-            - laravel
-
-  data-base:
-    image: mysql:8.0
-    container_name: data-base
-    restart: always
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
-      MYSQL_USER: ${DB_USERNAME:-username}
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./.docker/data-base/data:/var/lib/mysql
-    networks:
-            - laravel
-
-  phpmyadmin:
-    image: phpmyadmin:5.2.2
-    container_name: phpmyadmin
-    restart: always
-    environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: data-base
-      PMA_USER: ${DB_USERNAME:-username}
-      PMA_PASSWORD: ${DB_PASSWORD:-userpass}
-    ports:
-      - "8081:80"
     depends_on:
-      - data-base
-    networks:
-      - laravel
+      - app
 
-  redis:
-      image: redis:alpine
-      container_name: laravel_redis
-      restart: always
-      ports:
-        - "6379:6379"
-      networks:
-            - laravel
+  redis_clean_flow:
+    image: redis:latest
+    container_name: redis_clean_flow
+    restart: unless-stopped
+    ports:
+      - "6378:6379"
 
-networks:
-    laravel:
-        driver: bridge
+volumes:
+  mysql_data:
