@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'filial_id',
+        'tipo',
     ];
 
     /**
@@ -32,6 +34,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function filial()
+    {
+        // return $this->belongsTo(Filial::class, 'filial_id');
+    }
 
     /**
      * Get the attributes that should be cast.
