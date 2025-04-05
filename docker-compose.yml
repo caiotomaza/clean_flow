@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cleanflow_back
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - cleanflow
+
+  nginx:
+    image: nginx:alpine
+    container_name: cleanflow_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - cleanflow
+
+  db:
+    image: mysql:8
+    container_name: cleanflow_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: cleanflow
+      MYSQL_ROOT_PASSWORD: cleanflow1234
+      MYSQL_USER: cleanflow
+      MYSQL_PASSWORD: cleanflow1234
+      MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
+    ports:
+      - "3306:3306"
+    networks:
+      - cleanflow
+    volumes:
+      - cleanflow_mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: cleanflow_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: cleanflow1234
+    depends_on:
+      - db
+    networks:
+      - cleanflow
+
+  redis:
+    image: redis:alpine
+    container_name: cleanflow_redis
+    restart: unless-stopped
+    networks:
+      - cleanflow
+
+networks:
+  cleanflow:
+    driver: bridge
+
+volumes:
+  cleanflow_mysql_data:
+    driver: local
