@@ -56,7 +56,7 @@ REDIS_PORT=6379
 
 4. **Acessar o container do back-end**  
    ```bash
-   docker exec -it cleanflow_back bash
+   docker exec -it cleanflow_php bash
    ```
 
 5. **Instalar as dependências do Laravel**  
@@ -78,6 +78,7 @@ REDIS_PORT=6379
    ```bash
    npm install
    ```
+
 9. **Instalar as dependências do front-end**  
    ```bash
    npm run build

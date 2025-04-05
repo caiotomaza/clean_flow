@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: cleanflow_back
+    container_name: cleanflow_php
     restart: unless-stopped
     working_dir: /var/www
     volumes:
@@ -32,10 +32,10 @@ services:
     container_name: cleanflow_mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: cleanflow
-      MYSQL_ROOT_PASSWORD: cleanflow1234
-      MYSQL_USER: cleanflow
-      MYSQL_PASSWORD: cleanflow1234
+      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+      MYSQL_USER: ${DB_USERNAME:-username}
       MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
     ports:
       - "3306:3306"
@@ -52,7 +52,7 @@ services:
       - "8082:80"
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: cleanflow1234
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
     depends_on:
       - db
     networks:
