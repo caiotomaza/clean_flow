@@ -56,7 +56,7 @@ REDIS_PORT=6379
 
 4. **Acessar o container do back-end**  
    ```bash
-   docker exec -it backend bash
+   docker exec -it cleanflow_back bash
    ```
 
 5. **Instalar as dependências do Laravel**  
