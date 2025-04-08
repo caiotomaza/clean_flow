@@ -24,4 +24,8 @@ COPY . .
 # Permissões
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+#OPcache
+RUN docker-php-ext-install opcache
+COPY ./docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
 CMD ["php-fpm"]
