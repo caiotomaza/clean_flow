@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatórios - Produtos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css\relatorios\style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
       <div class="menu">
         <button class="icon-button">
             <img src="https://stratus.eco.br/wp-content/uploads/2024/07/caminhao-de-lixo.png" alt="Ícone" width="50">
-          </button>               
+          </button>
         <button class="menu-item">Dashboard</button>
         <button class="menu-item">Histórico</button>
         <button class="menu-item active">Relatórios</button>
@@ -48,7 +48,7 @@
               <button onclick="changePage(1)">&raquo;</button>
           </div>
         </div>
-        
+
         <div>
             <table>
                 <thead>
@@ -61,11 +61,10 @@
                     </tr>
                 </thead>
                 <tbody id="tabela-corpo">
-                    
+
         </div>
     </main>
-
-
-
+    <script src="{{ asset('js\relatorios\rows.js') }}"></script>
+    <script src="{{ asset('js\relatorios\script.js') }}"></script>
 </body>
 </html>

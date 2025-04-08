@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrada de Material</title>
-    <link rel="stylesheet" href="/resources/views/Gabriel/Entrada/Entrada de Material.css">
+    <link rel="stylesheet" href="css\entrada\style.css">
 </head>
 <body>
     <header>
         <div class="menu">
             <button class="icon-button">
-                <img src="/resources/views/Gabriel/caminhao-de-lixo.png" alt="Ícone" width="50">
-              </button>               
+                <img src="assets\img\caminhao-de-lixo.png" alt="Ícone" width="50">
+              </button>
             <button class="menu-item">Dashboard</button>
             <button class="menu-item">Histórico</button>
             <button class="menu-item active">Relatórios</button>
@@ -31,7 +31,7 @@
     <h1 class="title">Entrada de Material</h1>
 
     <div class="card-container">
-        
+
         <div class="card dark">
             <form action="POST">
                 <h2>Entrada de Material</h2>
@@ -41,7 +41,7 @@
                         <input type="text" placeholder="Numero">
                     </div>
                     <div class="form-group">
-                            
+
                     <label>Peso Inicial</label>
                         <input type="text" value="" placeholder="200kg">
                     </div>
@@ -94,7 +94,7 @@
                         <input type="text" placeholder="Numero">
                     </div>
                     <div class="form-group">
-                            
+
                     <label>Peso Inicial</label>
                         <input type="text" value="" placeholder="200kg">
                     </div>
@@ -147,7 +147,7 @@
                         <input type="text" placeholder="Numero">
                     </div>
                     <div class="form-group">
-                            
+
                     <label>Peso Inicial</label>
                         <input type="text" value="" placeholder="200kg">
                     </div>
@@ -191,5 +191,6 @@
             </form>
         </div>
     </div>
+    <script src="{{ asset('js\entrada\script.js') }}"></script>
 </body>
 </html>
