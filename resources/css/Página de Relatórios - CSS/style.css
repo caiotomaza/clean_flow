@@ -1,0 +1,281 @@
+body{
+    font-family: Inter;
+}
+a{
+    cursor: pointer;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-container input {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+.menu {
+  display: flex;
+  gap: 10px;
+  
+}
+.menu-item {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.menu-item.active {
+  background: green;
+  color: white;
+}
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.icon-button img{
+  margin-top: 0;
+}
+
+.icon-button:hover {
+  transform: scale(1.2);
+}
+.badge {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 7px;
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+  left: -5px;
+}
+button img {
+  vertical-align: middle;
+}
+
+
+img{
+    height: 50px;
+    width: 50px;
+    margin-top: 20px;
+}
+.head-1 button{
+    margin-top: 20px;
+}
+button{
+    background-color:#ffffff;
+    border:solid 1px rgb(79, 231, 79);
+    border-radius:15px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+button a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+#txtBusca{
+    background-color:#ffffff;
+    border:solid 1px rgb(79, 231, 79);
+    border-radius:15px;
+    width:250px;
+    height: 30px;
+    margin-top: 20px;
+}
+.icone-busca{
+    height: 30px;
+    width: 30px;
+    float:right;
+}
+button:hover{
+    background-color: rgb(79, 231, 79);
+    transition: 1.2s;
+}
+.title{
+    color: rgb(3, 139, 3);
+    margin-top: 50px;
+    margin-left: 25px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #dceeff;
+}
+table {
+    border: 5px solid #ffffff;
+    border-collapse: collapse;
+    background-color: #f5f5f5;
+    width: 100%;
+    border-radius: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 5px;
+  }
+  
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  
+tr:nth-child(even) {
+    background-color: #ddd;
+  }
+  
+.relatorio{
+    width: 150px;
+    height: 35px;
+    background-color: rgb(79, 231, 79);
+    color: #ffffff;
+    border:solid 1px rgb(0, 0, 0);
+}
+.rascunho{
+    width: 150px;
+    height: 35px;
+    background-color: rgb(42, 41, 41);
+    color: #ffffff;
+    border:solid 1px rgb(0, 0, 0);
+}
+
+.rascunho:hover{
+    background-color: rgb(11, 12, 11);
+    transition: 1.2s;
+}
+.relatorio:hover{
+    background-color: rgb(3, 139, 3);
+    transition: 1.2s;
+}
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+#page-numbers {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.pagination button {
+    background-color: rgb(3, 139, 3);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.page {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    font-size: 16px;
+    border: 2px solid #ddd;
+}
+
+.page.active {
+    background-color: rgb(3, 139, 3);
+    color: white;
+}
+.status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+}
+
+.status img {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 20px;
+}
+
+.status span {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.status.saida span {
+    color: red;
+}
+
+.status.entrada-carga span {
+    color: green;
+}
+
+.status.entrada-material span {
+    color: black;
+}
+  
+.controle-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.entrada-saida {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
