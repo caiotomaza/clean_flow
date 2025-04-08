@@ -20,23 +20,26 @@ body {
     background: white;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-
 
 .login-area {
     width: 50%;
     padding: 50px;
     background: #f2f5f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login-area h2 {
     font-size: 32px;
     color: #04df71;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .login-area p {
-    font-size: 18px;
+    font-size: 16px;
     color: #777;
     margin-bottom: 25px;
 }
@@ -48,7 +51,7 @@ body {
 .campo label {
     display: block;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 8px;
 }
 
@@ -58,13 +61,28 @@ body {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.campo input:focus {
+    border-color: #04df71;
+}
+
+.campo-checkbox{
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 12px;
 }
 
 .botao {
     width: 100%;
     padding: 12px;
+    margin-top: 10px;
     font-size: 18px;
-    background: rgb(57, 204, 38);
+    background: #04df71;
     color: white;
     border: none;
     border-radius: 5px;
@@ -73,18 +91,38 @@ body {
 }
 
 .botao:hover {
-    background: darkgray;
+    background: #03c765;
 }
 
 .esqueci {
     display: block;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 15px;
     color: #555;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
+.esqueci:hover {
+    color: #000;
+}
+
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.status-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
 
 .imagem {
     width: 50%;
@@ -95,82 +133,17 @@ body {
 .imagem img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+#esqueci-senha{
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-top: 10px;
 }
 
-.modal-content {
-    background: white;
-    padding: 30px;
-    width: 400px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-.modal-content h2 {
-    font-size: 24px;
-    color: rgb(19, 206, 19);
-    margin-bottom: 10px;
-}
-
-.modal-content p {
-    font-size: 16px;
-    color: #777;
-    margin-bottom: 20px;
-}
-
-.fechar {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #888;
-}
-
-.fechar:hover {
-    color: #555;
-}
-
-.modal .campo {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.modal .campo label {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.modal .campo input {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.modal .botao {
-    background: rgb(19, 206, 19);
-    font-size: 16px;
-}
-
-.modal .botao:hover {
-    background: darkgray;
+.erro-geral{
+    list-style: none;
+    color: red;
+    text-decoration: none;
 }
