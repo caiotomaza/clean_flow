@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="/resources/views/Gabriel/login/login.css">
+</head>
+<body>
+    <div class="caixa">
+        <div class="login-area">
+            <h2><strong>Bem-vindo</strong></h2>
+            <p>Entre na sua conta para acessar o sistema</p>
+            <form>
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="usuario@email.com" required>
+                </div>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha" required>
+                </div>
+                <button type="submit" class="botao">Entrar</button>
+            </form>
+            <a href="#" class="esqueci" id="btnEsqueci">Esqueci a Senha</a>
+        </div>
+        <div class="imagem">
+            <img src="/resources/views/Gabriel/WhatsApp Image 2025-04-04 at 09.47.50.jpeg" alt="Descrição da imagem">
+
+        </div>
+    </div>
+
+    <div id="modalRecuperacao" class="modal">
+        <div class="modal-content">
+            <span class="fechar" id="fecharModal">&times;</span>
+            <h2>Esqueceu sua senha</h2>
+            <p>Recupere sua conta</p>
+            <form>
+                <div class="campo">
+                    <label for="novaSenha">Nova Senha</label>
+                    <input type="password" id="novaSenha" placeholder="**********" required>
+                </div>
+                <div class="campo">
+                    <label for="confirmaSenha">Confirme nova senha</label>
+                    <input type="password" id="confirmaSenha" placeholder="**********" required>
+                </div>
+                <button type="submit" class="botao">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/resources/views/Gabriel/login/login.js"></script>
+</body>
+</html>
