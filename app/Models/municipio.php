@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class municipio extends Model
 {
-    //
+    protected $table = 'municipios';
+
+    protected $primaryKey = 'id_mun';
+    public $incrementing = true; // Indica se a chave primária é auto-incrementante
+    protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
+
+    protected $fillable = ['id_est', 'nome'];
+    
+    public $timestamps = false;
+ 
+    protected $casts = [
+        'ativo' => 'boolean',
+        'preco' => 'decimal:2',
+    ];
 }

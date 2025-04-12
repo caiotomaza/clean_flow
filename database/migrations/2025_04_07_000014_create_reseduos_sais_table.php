@@ -15,6 +15,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_saida')->primary();
             $table->unsignedBigInteger('id_arm')->nullable(); // Criação da chave estrangeira.
             $table->foreign('id_arm')->references('id_arm')->on('armazenamentos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
+            $table->unsignedBigInteger('id_vec')->nullable(); // Criação da chave estrangeira.
+            $table->foreign('id_vec')->references('id_vec')->on('veiculos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->timestamp('data_hora');
         });
     }
