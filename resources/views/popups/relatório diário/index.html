@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório Diário</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Botão para abrir o modal -->
+  <button id="openModalBtn" class="btn-cadastrar">+ Novo Relatório Diário</button>
+
+  <!-- Modal -->
+  <div id="relatorioModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Relatório Diário</h2>
+
+      <label for="data">Data</label>
+      <input type="date" id="data" name="data">
+
+      <label for="unidade">Unidade</label>
+      <select id="unidade" name="unidade">
+        <option value="">Selecione</option>
+        <option value="Unidade A">Unidade A</option>
+        <option value="Unidade B">Unidade B</option>
+      </select>
+
+      <label for="responsavel">Responsável</label>
+      <input type="text" id="responsavel" name="responsavel" placeholder="Nome do responsável">
+
+      <h3>1. Resíduos Coletados</h3>
+      <label>Recicláveis (Kg)</label>
+      <input type="text">
+      <label>Orgânicos (Kg)</label>
+      <input type="text">
+      <label>Rejeitos (Kg)</label>
+      <input type="text">
+      <label>Total (Kg)</label>
+      <input type="text" readonly>
+
+      <h3>2. Indicadores de Não Conformidade</h3>
+      <label>Não conformidades identificadas</label>
+      <input type="text" placeholder="Ex: descarte irregular">
+      <label>Reclamações</label>
+      <input type="text" placeholder="xxxxxxxxxxxxxxx">
+
+      <h3>3. Dados Ambientais</h3>
+      <label>Redução de consumo</label>
+      <input type="text" placeholder="xxxxxxxxxxxxxxx">
+      <label>Resíduos para o aterro</label>
+      <input type="text" placeholder="xxxxxxxxxxxxxxx">
+
+      <h3>4. Incidentes e Ocorrências</h3>
+      <label>Acidente de Trabalho</label>
+      <input type="text" placeholder="xxxxxxxxxxxxxxx">
+      <label>Problemas Operacionais</label>
+      <input type="text" placeholder="xxxxxxxxxxxxxxx">
+
+      <label>Observações</label>
+      <textarea rows="4" placeholder="xxxxxxxxxxxxxxx"></textarea>
+
+      <label>Anexar Documentos</label>
+      <input type="file">
+
+      <div class="button-row">
+        <button class="btn-limpar">Limpar</button>
+        <button class="btn-salvar">Salvar Rascunho</button>
+        <button class="btn-enviar">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
