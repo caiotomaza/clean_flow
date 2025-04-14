@@ -20,6 +20,13 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="campo">
+                    <label for="cpf">CPF</label>
+                    <input id="cpf" type="text" name="cpf" value="{{ old('cpf') }}" required placeholder="000.000.000-00">
+                    @error('cpf')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="campo">
                     <label for="email">Email</label>

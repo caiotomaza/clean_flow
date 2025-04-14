@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\entrada;
 use App\Http\Controllers\Page\EntradaController;
+use App\Http\Controllers\page\EntradaMaterialController;
 use App\Http\Controllers\Page\HistoricoController;
+use App\Http\Controllers\page\RegisterUserController;
 use App\Http\Controllers\Page\RelatorioController;
 use App\Http\Controllers\Page\UsuariosController;
 use App\Http\Controllers\ProfileController;
@@ -22,9 +24,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/entrada',[EntradaController::class, 'page'])->name('entrada.index');
+Route::get('/entrada',[EntradaMaterialController::class, 'page'])->name('entrada.index');
 Route::get('/historico',[HistoricoController::class, 'page'])->name('historico.index');
 Route::get('/relatorios',[RelatorioController::class, 'page'])->name('relatorios.index');
+
+// Usuarios
 Route::get('/usuarios',[UsuariosController::class, 'page'])->name('usuarios.index');
+Route::get('/usuarios/create', [UsuariosController::class, 'create'])->name('usuarios.create');
+Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');
+Route::put('/usuarios/{id}', [UsuariosController::class, 'update'])->name('usuarios.update');
+
+
 
 require __DIR__.'/auth.php';
