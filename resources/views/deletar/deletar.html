@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Desativar Usuário</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <button id="openDisableModal" class="btn-desativar">Desativar Usuário</button>
+
+  <div id="disableModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeDisableModal">&times;</span>
+      <h2>Desativar Usuário</h2>
+      <p>Você deseja desativar o usuário <strong>“João da Silva”</strong>?<br>
+        <span class="info-text">Essa ação pode ser desfeita a qualquer momento</span>
+      </p>
+      <div class="form-actions">
+        <button class="cancel" id="cancelDisable">Cancelar</button>
+        <button class="confirm red">Desativar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
