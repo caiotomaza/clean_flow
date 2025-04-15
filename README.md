@@ -74,21 +74,6 @@ REDIS_PORT=6379
    php artisan migrate
    ```
 
-8. **Instalar o Node,js**  
-   ```bash
-   npm install
-   ```
-
-9. **Instalar as dependências do front-end**  
-   ```bash
-   npm run build
-   ```
-
-10. **Compilar os assets do front-end**  
-   ```bash
-   npm run dev
-   ```
-
 ### 🎯 Acesse o Projeto  
 
 - **Front-end:** [http://localhost/](http://localhost/)  
