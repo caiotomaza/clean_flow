@@ -1,0 +1,187 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* Header e Navegação */
+  header {
+    background-color: #4CAF50;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  nav h1 {
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    color: #3498db;
+  }
+  
+  /* Seção Principal */
+  main {
+    margin-top: 60px;
+  }
+  
+  .hero {
+    background-color: #81E6D9;
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Botões */
+  .cta-button, .contact-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .cta-button {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .cta-button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+  }
+  
+  /* Seção de Recursos */
+  .features {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  .features h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .feature-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .feature-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  /* Seção de Contato */
+  .contact {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  .contact h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .contact p {
+    margin-bottom: 2rem;
+  }
+  
+  .contact-button {
+    background-color: white;
+    color: #2c3e50;
+  }
+  
+  .contact-button:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  
+    .hero h2 {
+      font-size: 2rem;
+    }
+  
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
