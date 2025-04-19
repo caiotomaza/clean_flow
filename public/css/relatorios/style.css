@@ -26,7 +26,7 @@ header {
 .menu {
   display: flex;
   gap: 10px;
-  
+
 }
 .menu-item {
   background: white;
@@ -144,18 +144,18 @@ table {
     padding-right: 30px;
     margin-left: 5px;
   }
-  
+
 th, td {
     padding: 8px;
     text-align: left;
     border: 1px solid #ddd;
   }
-  
-  
+
+
 tr:nth-child(even) {
     background-color: #ddd;
   }
-  
+
 .relatorio{
     width: 150px;
     height: 35px;
@@ -261,7 +261,7 @@ tr:nth-child(even) {
 .status.entrada-material span {
     color: black;
 }
-  
+
 .controle-topo {
   display: flex;
   justify-content: space-between;

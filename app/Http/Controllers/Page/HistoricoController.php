@@ -9,6 +9,6 @@ use Illuminate\Http\Request;
 class HistoricoController extends Controller
 {
     public function page(){
-        return view("historico.index");
+        return view("historicos.index");
     }
 }

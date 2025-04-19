@@ -6,6 +6,12 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <p>teste</p>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="botao">Sair</button>
+    </form>
+    
+    <h1>Bem-vindo ao seu Dashboard!</h1>
+    <p>Olá, {{ Auth::user()->name }}! Bem-vindo ao painel de controle.</p>
 </body>
 </html>
