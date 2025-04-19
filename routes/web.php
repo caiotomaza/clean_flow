@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 
 require __DIR__ . '/auth.php';
 
+// Welcome
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,18 +22,14 @@ Route::get('/dashboard', [DashboardController::class, 'page'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.index');
 
-// Navegação
-Route::get('/historicos', function () {
-    return view('historicos.index');
-});
-Route::get('/relatorios', function () {
-    return view('relatorios.index');
-});
-Route::get('/usuarios', function () {
-    return view('usuarios.index');
-});
+// Historio
+Route::get('/historicos', [HistoricoController::class, 'page'])->name('historicos.index');
+
+// Relatorios
+Route::get('/relatorios', [RelatorioController::class, 'page'])->name('relatorios.index');
 
 // Usuários
+Route::get('/usuarios',[UsuariosController::class, 'page'])->name('usuarios.index');
 Route::get('/usuarios/create', [UsuariosController::class, 'create'])->name('usuarios.create');
 Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');
 Route::put('/usuarios/{id}', [UsuariosController::class, 'update'])->name('usuarios.update');
