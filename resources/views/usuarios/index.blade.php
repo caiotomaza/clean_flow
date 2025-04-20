@@ -2,9 +2,12 @@
 
 @section('title', 'Usuários Cadastrados')
 
+
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/usuarios/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usuarios/modal.css') }}">
+@endsection
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/usuarios/style.css') }}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <main class="content">
     @if(session('success'))
         <div class="alert alert-success" role="alert">
@@ -21,10 +24,9 @@
             </ul>
         </div>
     @endif
-
     <section class="top-header">
         <h1>Usuários Cadastrados</h1>
-        <button type="button" class="btn-add" data-bs-toggle="modal" data-bs-target="#modalCadastro">
+        <button class="btn-add" onclick="abrirModal('modalCadastro')">
             Cadastrar Novo Usuário
         </button>
     </section>
@@ -33,11 +35,11 @@
         <table class="user-table">
             <thead>
                 <tr>
-                    <th scope="col">USUÁRIO</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">EMAIL</th>
-                    <th scope="col">STATUS</th>
-                    <th scope="col">AÇÕES</th>
+                    <th>USUÁRIO</th>
+                    <th>CPF</th>
+                    <th>EMAIL</th>
+                    <th>STATUS</th>
+                    <th>AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,9 +50,12 @@
                         <td>{{ $usuario->email }}</td>
                         <td><span class="status ativo">🟢 Ativo</span></td>
                         <td>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditar{{ $usuario->id }}">
-                                Editar
-                            </button>
+                            <button class="btn-edit" onclick="abrirModal('modalEditar{{ $usuario->id }}')">Editar</button>
+                            <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-edit" onclick="return confirm('Tem certeza que deseja deletar este usuário?')">deletar</button>
+                            </form>
                         </td>
                     </tr>
                 @empty
@@ -65,38 +70,28 @@
     @endif
 
     <!-- Modal de Cadastro -->
-    <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="modalCadastro" class="modal hidden">
+        <div class="modal-box">
             <form method="POST" id="formUsuario">
                 @csrf
                 <input type="hidden" name="_method" id="formMethod" value="POST">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCadastroLabel">Cadastrar Novo Usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label>Nome</label>
-                            <input type="text" name="name" id="inputName" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>CPF</label>
-                            <input type="text" name="cpf" id="inputCpf" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" name="email" id="inputEmail" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label id="labelSenha">Senha</label>
-                            <input type="password" name="password" id="inputSenha" class="form-control">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" id="btnSalvar">Cadastrar</button>
-                    </div>
+                <div class="modal-header">
+                    <h5>Cadastrar Novo Usuário</h5>
+                    <span class="modal-close" onclick="fecharModal('modalCadastro')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <label>Nome</label>
+                    <input type="text" name="name" id="inputName" required>
+                    <label>CPF</label>
+                    <input type="text" name="cpf" id="inputCpf" required>
+                    <label>Email</label>
+                    <input type="email" name="email" id="inputEmail" required>
+                    <label id="labelSenha">Senha</label>
+                    <input type="password" name="password" id="inputSenha">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="fecharModal('modalCadastro')">Cancelar</button>
+                    <button type="submit" class="btn-confirmar">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -104,44 +99,35 @@
 
     <!-- Modais de Edição -->
     @foreach($usuarios as $user)
-        <div class="modal fade" id="modalEditar{{ $user->id }}" tabindex="-1" aria-labelledby="modalEditarLabel{{ $user->id }}" aria-hidden="true">
-            <div class="modal-dialog">
+        <div id="modalEditar{{ $user->id }}" class="modal hidden">
+            <div class="modal-box">
                 <form method="POST" action="{{ route('usuarios.update', $user->id) }}">
                     @csrf
                     @method('PUT')
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalEditarLabel{{ $user->id }}">Editar Usuário</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label>Nome</label>
-                                <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label>CPF</label>
-                                <input type="text" name="cpf" class="form-control" value="{{ $user->cpf }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label>Nova Senha (deixe em branco se não quiser alterar)</label>
-                                <input type="password" name="password" class="form-control">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-success">Salvar Alterações</button>
-                        </div>
+                    <div class="modal-header">
+                        <h5>Editar Usuário</h5>
+                        <span class="modal-close" onclick="fecharModal('modalEditar{{ $user->id }}')">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nome</label>
+                        <input type="text" name="name" value="{{ $user->name }}" required>
+                        <label>CPF</label>
+                        <input type="text" name="cpf" value="{{ $user->cpf }}" required>
+                        <label>Email</label>
+                        <input type="email" name="email" value="{{ $user->email }}" required>
+                        <label>Nova Senha (deixe em branco se não quiser alterar)</label>
+                        <input type="password" name="password">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="fecharModal('modalEditar{{ $user->id }}')">Cancelar</button>
+                        <button type="submit" class="btn-confirmar">Salvar Alterações</button>
                     </div>
                 </form>
             </div>
         </div>
     @endforeach
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="{{asset('js/usuarios/script.js')}}"></script>
 </main>
 @endsection

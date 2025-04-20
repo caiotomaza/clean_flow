@@ -33,6 +33,7 @@ Route::get('/usuarios',[UsuariosController::class, 'page'])->name('usuarios.inde
 Route::get('/usuarios/create', [UsuariosController::class, 'create'])->name('usuarios.create');
 Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');
 Route::put('/usuarios/{id}', [UsuariosController::class, 'update'])->name('usuarios.update');
+Route::delete('/usuarios/{id}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 
 /*
 // Profile (comentado)

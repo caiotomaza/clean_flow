@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
-@section('content')
+@section('head')
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
+
+@endsection
+
+@section('content')
 <main>
     <div class="dashboard-container">
         <div class="dashboard-row">

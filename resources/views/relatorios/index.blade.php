@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
+@section('head')
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('css/relatorios/modal.css')}}">
+<link rel="stylesheet" href="{{asset('css/relatorios/style.css')}}">
+
+@endsection
+
 @section('content')
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/relatorios/modal.css')}}">
-    <link rel="stylesheet" href="{{asset('css/relatorios/style.css')}}">
 
 <main>
     <h1 class="title">Relatórios</h1>
