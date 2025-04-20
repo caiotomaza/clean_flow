@@ -9,6 +9,22 @@ img{
   margin-top: 20px;
 }
 
+.btn-cadastrar{
+  background-color: rgb(13, 171, 13);
+  width: 200px;
+  height: 60px;
+  color: white;
+  border: solid 1px black;
+}
+
+.btn-rascunho{
+  background-color: rgb(16, 102, 194);
+  width: 200px;
+  height: 60px;
+  color: white;
+  border: solid 1px black;
+}
+
 button a{
   color: rgb(0, 0, 0);
   text-decoration: none;

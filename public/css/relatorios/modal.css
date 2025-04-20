@@ -1,127 +1,79 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 40px;
-  }
+ /* Estilos básicos para o modal */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   
-  .btn-cadastrar {
-    background-color: #3ca146;
-    color: white;
-    padding: 10px 20px;
-    font-size: 15px;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .btn-cadastrar:hover {
-    background-color: #d32f2f;
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: auto;
-    padding: 30px;
-    border: 1px solid #888;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 12px;
-    position: relative;
-  }
-  
-  .modal-content h2 {
-    margin-top: 0;
-  }
-  
-  .close {
-    color: #aaa;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-  }
-  
-  label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="date"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .button-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .btn-limpar {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .btn-salvar {
-    background-color: #3f51b5;
-    color: white;
-  }
-  
-  .btn-enviar {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .btn-limpar,
-  .btn-salvar,
-  .btn-enviar {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .btn-limpar:hover {
-    background-color: #d32f2f;
-  }
-  
-  .btn-salvar:hover {
-    background-color: #303f9f;
-  }
-  
-  .btn-enviar:hover {
-    background-color: #388e3c;
-  }
-  
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos adicionais para o formulário (opcional) */
+#formRelatorio label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#formRelatorio input[type=text],
+#formRelatorio input[type=number],
+#formRelatorio input[type=date],
+#formRelatorio select,
+#formRelatorio textarea,
+#formRelatorio input[type=file] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#formRelatorio .button-row button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#formRelatorio .btn-limpar {
+  background-color: #f44336;
+  color: white;
+}
+
+#formRelatorio .btn-salvar {
+  background-color: #ff9800;
+  color: white;
+}
+
+#formRelatorio .btn-enviar {
+  background-color: #4CAF50;
+  color: white;
+}
