@@ -1,7 +1,7 @@
-
 const totalPages = 5;
 let currentPage = 1;
 
+// Funções de paginação (mantidas intactas)
 function createPagination() {
     const pageNumbers = document.getElementById("page-numbers");
     pageNumbers.innerHTML = "";
@@ -11,9 +11,7 @@ function createPagination() {
         page.classList.add("page");
         page.innerText = i;
         page.onclick = () => goToPage(i);
-        if (i === currentPage) {
-            page.classList.add("active");
-        }
+        if (i === currentPage) page.classList.add("active");
         pageNumbers.appendChild(page);
     }
 }
@@ -30,25 +28,5 @@ function goToPage(page) {
     createPagination();
 }
 
+// Inicialização
 document.addEventListener("DOMContentLoaded", createPagination);
-
-document.addEventListener("DOMContentLoaded", () => {
-    const btnAbrir = document.getElementById("btnAbrirModal");
-    const modal = document.getElementById("modal");
-    const fechar = document.getElementById("fecharModal");
-  
-    btnAbrir.addEventListener("click", () => {
-      modal.style.display = "block";
-    });
-  
-    fechar.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-  
-    window.addEventListener("click", (e) => {
-      if (e.target == modal) {
-        modal.style.display = "none";
-      }
-    });
-  });
-  

@@ -1,48 +1,44 @@
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
+
+
+img{
+  height: 50px;
+  width: 50px;
+  margin-top: 20px;
+}
+.head-1 button{
+  margin-top: 20px;
 }
 
-a {
-  cursor: pointer;
-}
-
-button {
-  background-color: #ffffff;
-  border: solid 1px rgb(79, 231, 79);
-  border-radius: 15px;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
-button a {
+button a{
   color: rgb(0, 0, 0);
   text-decoration: none;
 }
-
-button:hover {
+#txtBusca{
+  background-color:#ffffff;
+  border:solid 1px rgb(79, 231, 79);
+  border-radius:15px;
+  width:250px;
+  height: 30px;
+  margin-top: 20px;
+}
+.icone-busca{
+  height: 30px;
+  width: 30px;
+  float:right;
+}
+button:hover{
   background-color: rgb(79, 231, 79);
   transition: 1.2s;
 }
-
-.title {
-  color: rgb(79, 231, 79);
+.title{
+  color: rgb(3, 139, 3);
   margin-top: 50px;
   margin-left: 25px;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  border: 5px solid #ffffff;
-  background-color: #f5f5f5;
-  border-radius: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-left: 5px;
 }
 
 th, td {
@@ -56,35 +52,53 @@ th {
 }
 
 tr:nth-child(even) {
+  background-color: #dceeff;
+}
+table {
+  border: 5px solid #ffffff;
+  border-collapse: collapse;
+  background-color: #f5f5f5;
+  width: 100%;
+  border-radius: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 5px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+
+tr:nth-child(even) {
   background-color: #ddd;
 }
 
-.relatorio {
+.relatorio{
   width: 150px;
   height: 35px;
   background-color: rgb(79, 231, 79);
   color: #ffffff;
-  border: solid 1px rgb(0, 0, 0);
+  border:solid 1px rgb(0, 0, 0);
 }
-
-.rascunho {
+.rascunho{
   width: 150px;
   height: 35px;
   background-color: rgb(42, 41, 41);
   color: #ffffff;
-  border: solid 1px rgb(0, 0, 0);
+  border:solid 1px rgb(0, 0, 0);
 }
 
-.rascunho:hover {
+.rascunho:hover{
   background-color: rgb(11, 12, 11);
   transition: 1.2s;
 }
-
-.relatorio:hover {
+.relatorio:hover{
   background-color: rgb(3, 139, 3);
   transition: 1.2s;
 }
-
 .pagination {
   display: flex;
   flex-direction: row;
@@ -136,7 +150,6 @@ tr:nth-child(even) {
   background-color: rgb(3, 139, 3);
   color: white;
 }
-
 .status {
   display: flex;
   align-items: center;
@@ -170,10 +183,10 @@ tr:nth-child(even) {
 }
 
 .controle-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-right: 20px;
 }
 
 .entrada-saida {
@@ -181,56 +194,8 @@ tr:nth-child(even) {
   gap: 10px;
 }
 
-.btn-cadastrar {
-  background-color: #3ca146;
-  color: white;
-  padding: 10px 20px;
-  font-size: 15px;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.btn-cadastrar:hover {
-  background-color: #d32f2f;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 60px;
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: auto;
-  padding: 30px;
-  border: 1px solid #888;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 12px;
-  position: relative;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-}
-
-.close {
-  color: #aaa;
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  font-size: 28px;
-  font-weight: bold;
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
