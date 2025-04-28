@@ -2,7 +2,6 @@
 
 @section('title', 'Usuários Cadastrados')
 
-
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/usuarios/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/usuarios/modal.css') }}">
@@ -25,9 +24,9 @@
         </div>
     @endif
     <section class="top-header">
-        <h1>Usuários Cadastrados</h1>
+        <h1>Usuários</h1>
         <button class="btn-add" onclick="abrirModal('modalCadastro')">
-            Cadastrar Novo Usuário
+            + Cadastrar
         </button>
     </section>
 
@@ -35,18 +34,18 @@
         <table class="user-table">
             <thead>
                 <tr>
-                    <th>USUÁRIO</th>
-                    <th>CPF</th>
-                    <th>EMAIL</th>
-                    <th>STATUS</th>
-                    <th>AÇÕES</th>
+                    <th>Matricula</th>
+                    <th>Usuário</th>
+                    <th>E-mail</th>
+                    <th>Situação</th>
+                    <th>Gerenciamento</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($usuarios as $usuario)
                     <tr>
+                        <td>{{ $usuario->matricula }}</td>
                         <td>{{ $usuario->name }}</td>
-                        <td>{{ $usuario->cpf }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td><span class="status ativo">🟢 Ativo</span></td>
                         <td>
@@ -54,7 +53,7 @@
                             <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn-edit" onclick="return confirm('Tem certeza que deseja deletar este usuário?')">deletar</button>
+                                <button class="btn-edit" onclick="return confirm('Tem certeza que deseja deletar este usuário?')">Deletar</button>
                             </form>
                         </td>
                     </tr>
@@ -69,24 +68,24 @@
         <nav>{{ $usuarios->links() }}</nav>
     @endif
 
-    <!-- Modal de Cadastro -->
+    <!-- Popup de Cadastro de Usuário -->
     <div id="modalCadastro" class="modal hidden">
         <div class="modal-box">
             <form method="POST" id="formUsuario">
                 @csrf
                 <input type="hidden" name="_method" id="formMethod" value="POST">
                 <div class="modal-header">
-                    <h5>Cadastrar Novo Usuário</h5>
+                    <h5>Cadastrar novo usuário</h5>
                     <span class="modal-close" onclick="fecharModal('modalCadastro')">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <label>Nome</label>
+                    <label>Matricula:</label>
+                    <input type="text" name="id" id="inputCpf" required> <!--Matricula que é gerada pela empresa dona do sistema.-->
+                    <label>Nome:</label>
                     <input type="text" name="name" id="inputName" required>
-                    <label>CPF</label>
-                    <input type="text" name="cpf" id="inputCpf" required>
-                    <label>Email</label>
+                    <label>E-mail:</label>
                     <input type="email" name="email" id="inputEmail" required>
-                    <label id="labelSenha">Senha</label>
+                    <label id="labelSenha">Senha:</label>
                     <input type="password" name="password" id="inputSenha">
                 </div>
                 <div class="modal-footer">
@@ -97,7 +96,7 @@
         </div>
     </div>
 
-    <!-- Modais de Edição -->
+    <!-- Popup de Edição de Usuário -->
     @foreach($usuarios as $user)
         <div id="modalEditar{{ $user->id }}" class="modal hidden">
             <div class="modal-box">
@@ -105,22 +104,22 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
-                        <h5>Editar Usuário</h5>
+                        <h5>Editar usuário</h5>
                         <span class="modal-close" onclick="fecharModal('modalEditar{{ $user->id }}')">&times;</span>
                     </div>
                     <div class="modal-body">
-                        <label>Nome</label>
-                        <input type="text" name="name" value="{{ $user->name }}" required>
-                        <label>CPF</label>
-                        <input type="text" name="cpf" value="{{ $user->cpf }}" required>
-                        <label>Email</label>
-                        <input type="email" name="email" value="{{ $user->email }}" required>
-                        <label>Nova Senha (deixe em branco se não quiser alterar)</label>
-                        <input type="password" name="password">
+                        <label>Matricula:</label>
+                        <input type="text" name="id" id="inputCpf" required> <!--Matricula que é gerada pela empresa dona do sistema.-->
+                        <label>Nome:</label>
+                        <input type="text" name="name" id="inputName" required>
+                        <label>E-mail:</label>
+                        <input type="email" name="email" id="inputEmail" required>
+                        <label id="labelSenha">Senha:</label>
+                        <input type="password" name="password" id="inputSenha">
                     </div>
                     <div class="modal-footer">
                         <button type="button" onclick="fecharModal('modalEditar{{ $user->id }}')">Cancelar</button>
-                        <button type="submit" class="btn-confirmar">Salvar Alterações</button>
+                        <button type="submit" class="btn-confirmar">Salvar</button>
                     </div>
                 </form>
             </div>

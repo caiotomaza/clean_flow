@@ -11,13 +11,13 @@
 @section('content')
 
 <main>
-    <h1 class="title">Histórico</h1>
+    <h1 class="title">Registros</h1>
 
     <div class="controle-topo">
         <div class="entrada-saida">
-            <button class="entrada" id="btnAbrirModalEntradaCarga">Entrada de Carga</button>
-            <button class="entrada-material" style="border-width: 1px;">Entrada de Material</button>
-            <button class="saida">Saída de Material</button>
+            <button class="entrada" id="btnAbrirModalEntradaCarga">Registrar entrada</button>
+            <button class="entrada-material" style="border-width: 1px;">Registrar armazenamento</button>
+            <button class="saida">Registrar saída</button>
         </div>
 
         <div class="pagination">
@@ -31,11 +31,12 @@
     <table>
         <thead>
             <tr>
-                <th>Nº de Registro</th>
-                <th>Usuário</th>
-                <th>Material</th>
+                <th>Nº de registro</th>
+                <th>Responsável</th>
+                <th>Tipo de resíduos</th>
+                <th>Subtipo de resíduos</th>
                 <th>Detalhes</th>
-                <th>Status</th>
+                <th>Tipo de registro</th>
             </tr>
         </thead>
         <tbody id="tabela-corpo">
@@ -43,72 +44,54 @@
     </table>
 </main>
 
-{{-- ========= INÍCIO DO MODAL DE ENTRADA DE CARGA ========= --}}
+<!--Popup de registro de entrada de resíduos-->
 <div id="modalEntradaCarga" class="modal">
-
-    {{-- Conteúdo do Modal --}}
     <div class="modal-content">
-        {{-- Botão de Fechar --}}
         <span class="close-btn" id="btnCloseModalEntradaCarga">&times;</span>
         <div class="card">
             <form action="#" method="POST"> 
                 @csrf
-                <h2>Entrada de Carga</h2> 
+                <h2>Entrada de resíduos</h2> 
                 <div class="box">
                     <div class="form-group">
-                        <label for="placa_veiculo">Placa de Veiculo</label>
+                        <label for="placa_veiculo">Placa do veículo</label>
                         <input type="text" id="placa_veiculo" name="placa_veiculo" placeholder="ABC-1234" required>
                     </div>
                     <div class="form-group">
-                        <label for="peso_inicial">Peso Inicial (Tara)</label>
+                        <label for="peso_inicial">Peso (kg)</label>
                         <input type="text" id="peso_inicial" name="peso_inicial" placeholder="1500kg" required>
                     </div>
                     <div class="form-group">
-                        <label for="material">Material</label>
-                        <input type="text" id="material" name="material" placeholder="Papelão" required>
+                        <label for="material">Tipo de resíduos</label>
+                        <input type="text" id="material" name="material" placeholder="Plástico" required>
                     </div>
                     <div class="form-group">
-                        <label for="subtitulo_material">Subtítulo do Material</label>
-                        <input type="text" id="subtitulo_material" name="subtitulo_material" placeholder="Reciclado">
+                        <label for="subtitulo_material">Subtipo de resíduos</label>
+                        <input type="text" id="subtitulo_material" name="subtitulo_material" placeholder="Pet">
                     </div>
-                    <div class="form-group">
-                        <label for="peso_final">Peso Final (Bruto)</label> {{-- Assumi que este é o peso final --}}
-                        <input type="text" id="peso_final" name="peso_final" placeholder="3500kg" required>
-                    </div>
-                     {{-- Se precisar calcular o peso líquido, pode fazer no backend ou com JS --}}
                     <div class="form-group">
                         <label for="responsavel">Responsável</label>
-                        <input type="text" id="responsavel" name="responsavel" placeholder="Nome do Responsável" required>
+                        <input type="text" id="responsavel" name="responsavel" placeholder="Nome completo" required>
                     </div>
                     <div class="form-group">
-                        <label for="descricao">Descrição</label>
-                        <input type="text" id="descricao" name="descricao" placeholder="Detalhes adicionais">
+                        <label for="id_container">ID do armazenamento</label>
+                        <input type="text" id="id_container" name="id_container" placeholder="ERP0001">
                     </div>
                     <div class="form-group">
-                        <label for="tipo">Tipo</label>
-                        <input type="text" id="tipo" name="tipo" placeholder="Tipo A">
-                    </div>
-                    <div class="form-group">
-                        <label for="id_container">ID do Contêiner</label>
-                        <input type="text" id="id_container" name="id_container" placeholder="CT-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="data_armazenamento">Data de Entrada</label> {{-- Ajustei o label --}}
-                        <input type="date" id="data_armazenamento" name="data_armazenamento" required>
+                        <label for="data_armazenamento">Data e hora da entrada</label> {{-- Ajustei o label --}}
+                        <input type="datetime" id="data_armazenamento" name="data_armazenamento" required>
                     </div>
                 </div>
                 <div class="buttons">
                     <button type="reset" class="btn-danger">Limpar</button>
-                    <button type="submit" class="btn-sucess">Concluir Entrada</button>
+                    <button type="submit" class="btn-sucess">Concluir</button>
                 </div>
             </form>
         </div>
     </div>
 
 </div>
-{{-- ========= FIM DO MODAL DE ENTRADA DE CARGA ========= --}}
 
-{{-- scripts --}}
 <script src="{{ asset('js/historico/script.js') }}"></script>
 <script src="{{ asset('js/historico/status_randomizer.js') }}"></script>
 <script src="{{ asset('js/historico/entradaCarga.js') }}"></script>
