@@ -4,20 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reseduos extends Model
+class Reseduos extends Model
 {
-    protected $table = 'reseduoss';
+    protected $table = 'reseduos';
 
     protected $primaryKey = 'id_resd';
-    public $incrementing = true; // Indica se a chave primária é auto-incrementante
-    protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = ['nome'];
     
     public $timestamps = false;
- 
-    protected $casts = [
-        'ativo' => 'boolean',
-        'preco' => 'decimal:2',
-    ];
 }

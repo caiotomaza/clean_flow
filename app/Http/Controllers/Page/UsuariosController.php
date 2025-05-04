@@ -17,7 +17,7 @@ class UsuariosController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'cpf' => 'required|string|unique:users',
+            'matricula' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
@@ -33,7 +33,7 @@ class UsuariosController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'cpf' => 'required|string|unique:users,cpf,' . $id,
+            'matricula' => 'required|string|unique:users,matricula,' . $id,
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|min:6',
         ]);

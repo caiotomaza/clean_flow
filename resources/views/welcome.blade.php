@@ -19,9 +19,9 @@
 
         <main>
             <section id="inicio" class="hero">
-            <h2>Bem-vindo ao Clean Flow</h2>
-            <p>Uma solução moderna para gestão de residuos solidos.</p>
-            <button class="cta-button">Começar agora</button>
+                <h2>Bem-vindo ao Clean Flow</h2>
+                <p>Uma solução moderna para gestão de residuos solidos.</p>
+                <button class="cta-button">Começar agora</button>
             </section>
 
             <section id="recursos" class="features">

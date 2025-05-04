@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DB\ReseduosCheController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\DashboardController;
 use App\Http\Controllers\Page\EntradaController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Page\RegisterUserController;
 use App\Http\Controllers\Page\RelatorioController;
 use App\Http\Controllers\Page\UsuariosController;
 use App\Http\Controllers\ProfileController;
+use App\Models\sub_reseduos;
 
 require __DIR__ . '/auth.php';
 
@@ -24,6 +26,11 @@ Route::get('/dashboard', [DashboardController::class, 'page'])
 
 // Historio
 Route::get('/historicos', [HistoricoController::class, 'page'])->name('historicos.index');
+Route::post('/residuos/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
+Route::get('/subtipos/{id}', function ($id) {
+    return sub_reseduos::where('id_resd', $id)->get();
+});
+
 
 // Relatorios
 Route::get('/relatorios', [RelatorioController::class, 'page'])->name('relatorios.index');

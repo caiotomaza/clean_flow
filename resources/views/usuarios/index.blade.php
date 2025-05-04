@@ -71,7 +71,7 @@
     <!-- Popup de Cadastro de Usuário -->
     <div id="modalCadastro" class="modal hidden">
         <div class="modal-box">
-            <form method="POST" id="formUsuario">
+            <form action="{{ route('usuarios.store')}}" method="POST" id="formUsuario">
                 @csrf
                 <input type="hidden" name="_method" id="formMethod" value="POST">
                 <div class="modal-header">
@@ -80,13 +80,13 @@
                 </div>
                 <div class="modal-body">
                     <label>Matricula:</label>
-                    <input type="text" name="id" id="inputCpf" required> <!--Matricula que é gerada pela empresa dona do sistema.-->
+                    <input type="text" name="matricula" id="matricula" required> <!--Matricula que é gerada pela empresa dona do sistema.-->
                     <label>Nome:</label>
-                    <input type="text" name="name" id="inputName" required>
+                    <input type="text" name="name" id="name" required>
                     <label>E-mail:</label>
-                    <input type="email" name="email" id="inputEmail" required>
+                    <input type="email" name="email" id="email" required>
                     <label id="labelSenha">Senha:</label>
-                    <input type="password" name="password" id="inputSenha">
+                    <input type="password" name="password" id="password">
                 </div>
                 <div class="modal-footer">
                     <button type="button" onclick="fecharModal('modalCadastro')">Cancelar</button>

@@ -3,12 +3,23 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Reseduos;
+use App\Models\Reseduos_che;
+use App\Models\Sub_reseduos;
+use App\Models\User;
+use App\Models\Veiculo;
 use Illuminate\Http\Request;
 
 class HistoricoController extends Controller
 {
     public function page(){
-        return view("historicos.index");
+        $placas = Veiculo::all();
+        $residuos = Reseduos::all();
+        $subresiduos = Sub_reseduos::all();
+        $users = User::all();
+
+        $registros = Reseduos_che::with(['responsavel', 'residuo', 'subresiduo'])->get();
+    
+        return view("historicos.index", compact('placas', 'residuos', 'subresiduos', 'users', 'registros'));
     }
 }

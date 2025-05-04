@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('ie');
             $table->integer('im');
             $table->string('email');
-            $table->integer ('telefone');
+            $table->string('telefone');
             $table->timestamps();
         });
     }
