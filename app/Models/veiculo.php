@@ -12,7 +12,10 @@ class Veiculo extends Model
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
-    protected $fillable = ['id_fil', 'placa'];
+    protected $fillable = [
+        'id_fil', 
+        'placa'
+    ];
     
     public $timestamps = false;
  
@@ -20,4 +23,9 @@ class Veiculo extends Model
         'ativo' => 'boolean',
         'preco' => 'decimal:2',
     ];
+
+    public function filial()
+    {
+        return $this->belongsTo(User::class, 'id_fil');
+    }
 }

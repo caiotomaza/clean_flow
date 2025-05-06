@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class filial extends Model
+class Filial extends Model
 {
     protected $table = 'filials';
 
@@ -12,7 +12,11 @@ class filial extends Model
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
-    protected $fillable = ['id_emp', 'id_log', 'nome'];
+    protected $fillable = [
+        'id_emp', 
+        'id_log', 
+        'nome'
+    ];
     
     public $timestamps = false;
  
@@ -20,4 +24,14 @@ class filial extends Model
         'ativo' => 'boolean',
         'preco' => 'decimal:2',
     ];
+
+    public function empresa()
+    {
+        return $this->belongsTo(User::class, 'id_emp');
+    }
+
+    public function endereco()
+    {
+        return $this->belongsTo(User::class, 'id_log');
+    }
 }

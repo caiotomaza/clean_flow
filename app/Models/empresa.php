@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class empresa extends Model
+class Empresa extends Model
 {
     protected $table = 'empresas';
 
@@ -12,7 +12,16 @@ class empresa extends Model
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
-    protected $fillable = ['id_temp', 'nome_fans', 'razao_social', 'cnpj', 'ie', 'im', 'email', 'telefone'];
+    protected $fillable = [
+        'id_temp', 
+        'nome_fans', 
+        'razao_social', 
+        'cnpj', 
+        'ie', 
+        'im', 
+        'email', 
+        'telefone'
+    ];
     
     public $timestamps = false;
  
@@ -20,4 +29,9 @@ class empresa extends Model
         'ativo' => 'boolean',
         'preco' => 'decimal:2',
     ];
+
+    public function tipo_empresa()
+    {
+        return $this->belongsTo(User::class, 'id_temp');
+    }
 }
