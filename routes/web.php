@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\DashboardController;
 use App\Http\Controllers\Page\EntradaController;
 use App\Http\Controllers\Page\EntradaMaterialController;
-use App\Http\Controllers\Page\HistoricoController;
+use App\Http\Controllers\Page\RegistrosController;
 use App\Http\Controllers\Page\RegisterUserController;
-use App\Http\Controllers\Page\RelatorioController;
+use App\Http\Controllers\Page\CadastrosController;
 use App\Http\Controllers\Page\UsuariosController;
 use App\Http\Controllers\ProfileController;
 use App\Models\sub_reseduos;
@@ -25,8 +25,8 @@ Route::get('/dashboard', [DashboardController::class, 'page'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.index');
 
-// Historio
-Route::get('/historicos', [HistoricoController::class, 'page'])->name('historicos.index');
+// Registros
+Route::get('/registros', [RegistrosController::class, 'page'])->name('registros.index');
 Route::post('/residuos/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
 Route::post('/armazenamentos', [ArmazenamentoController::class, 'store'])->name('armazenamentos.store');
 Route::get('/subtipos/{id}', function ($id) {
@@ -34,8 +34,8 @@ Route::get('/subtipos/{id}', function ($id) {
 });
 
 
-// Relatorios
-Route::get('/relatorios', [RelatorioController::class, 'page'])->name('relatorios.index');
+// Cadastros
+Route::get('/cadasros', [CadastrosController::class, 'page'])->name('cadastros.index');
 
 // Usuários
 Route::get('/usuarios',[UsuariosController::class, 'page'])->name('usuarios.index');

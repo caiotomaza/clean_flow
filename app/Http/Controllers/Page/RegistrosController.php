@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Veiculo;
 use Illuminate\Http\Request;
 
-class HistoricoController extends Controller
+class RegistrosController extends Controller
 {
     public function page(){
         $placas = Veiculo::all();
@@ -22,6 +22,6 @@ class HistoricoController extends Controller
         $registros = Reseduos_che::with(['responsavel', 'residuo', 'subresiduo'])->get();
         $armazenamento = Armazenamento::with('residuo', 'subresiduo')->get();
     
-        return view("historicos.index", compact('registros', 'armazenamento', 'placas', 'residuos', 'subresiduos', 'users'));
+        return view("registros.index", compact('registros', 'armazenamento', 'placas', 'residuos', 'subresiduos', 'users'));
     }
 }

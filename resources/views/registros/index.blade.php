@@ -16,7 +16,7 @@
 
     <div class="controle-topo">
         <div class="entrada-saida">
-            <button class="button-entrada" onclick="abrirPopupResiduos()">Registrar Entrada</button>
+            <button class="button-entrada" onclick="abrirPopupResiduos()">Registrar entrada</button>
             <button class="button-armazenamento" onclick="abrirPopup()">Registrar armazenamento</button>
             <button class="button-saida" onclick="abrirPopupResiduoSaida()">Registrar saída</button>
 

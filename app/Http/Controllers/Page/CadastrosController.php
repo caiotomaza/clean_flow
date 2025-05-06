@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class RelatorioController extends Controller
+class CadastrosController extends Controller
 {
     public function page(){
-        return view("relatorios.index");
+        return view("cadastros.index");
     }
 }

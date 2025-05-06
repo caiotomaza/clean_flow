@@ -13,13 +13,13 @@
                 </button>
             </a>
             <a href="{{ route('dashboard.index')}}">
-                <button class="custom-menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</button>
+                <button class="custom-menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">Painel</button>
             </a>
-            <a href="{{ route('historicos.index')}}">
-                <button class="custom-menu-item {{ request()->is('historicos*') ? 'active' : '' }}">Histórico</button>
+            <a href="{{ route('registros.index')}}">
+                <button class="custom-menu-item {{ request()->is('registros*') ? 'active' : '' }}">Registros</button>
             </a>
-            <a href="{{ route('relatorios.index')}}">
-                <button class="custom-menu-item {{ request()->is('relatorios*') ? 'active' : '' }}">Relatórios</button>
+            <a href="{{ route('cadastros.index')}}">
+                <button class="custom-menu-item {{ request()->is('cadastros*') ? 'active' : '' }}">Cadastros</button>
             </a>
             <a href="{{ route('usuarios.index')}}">
                 <button class="custom-menu-item {{ request()->is('usuarios*') ? 'active' : '' }}">Usuários</button>
@@ -35,7 +35,7 @@
             </div>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="custom-logout-button">Logout</button>
+                <button type="submit" class="custom-logout-button">Sair</button>
             </form>
         </div>
     </header>
