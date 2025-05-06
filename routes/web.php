@@ -35,7 +35,7 @@ Route::get('/subtipos/{id}', function ($id) {
 
 
 // Cadastros
-Route::get('/cadasros', [CadastrosController::class, 'page'])->name('cadastros.index');
+Route::get('/cadastros', [CadastrosController::class, 'page'])->name('cadastros.index');
 
 // Usuários
 Route::get('/usuarios',[UsuariosController::class, 'page'])->name('usuarios.index');
