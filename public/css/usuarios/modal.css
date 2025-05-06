@@ -1,0 +1,76 @@
+/* modal */
+.modal.hidden {
+    display: none;
+  }
+  
+  .modal {
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-box {
+    background: white;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-close {
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  .modal-body label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .modal-body input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+  }
+  
+  .modal-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .btn-confirmar {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  
+  .btn-edit {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .btn-add {
+    background: #00bd04;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }

@@ -1,0 +1,79 @@
+ /* Estilos básicos para o modal */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos adicionais para o formulário (opcional) */
+#formRelatorio label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#formRelatorio input[type=text],
+#formRelatorio input[type=number],
+#formRelatorio input[type=date],
+#formRelatorio select,
+#formRelatorio textarea,
+#formRelatorio input[type=file] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#formRelatorio .button-row button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#formRelatorio .btn-limpar {
+  background-color: #f44336;
+  color: white;
+}
+
+#formRelatorio .btn-salvar {
+  background-color: #ff9800;
+  color: white;
+}
+
+#formRelatorio .btn-enviar {
+  background-color: #4CAF50;
+  color: white;
+}

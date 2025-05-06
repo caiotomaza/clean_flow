@@ -1,47 +1,88 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="{{ asset('css/login/style.css') }}">
+</head>
+<body>
+    <div class="caixa">
+        <div class="login-area">
+            <h2><strong>Bem-vindo</strong></h2>
+            <p>Entre na sua conta para acessar o sistema</p>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+            {{-- Mensagem de status, como confirmação de senha alterada --}}
+            @if (session('status'))
+                <div class="status-message">
+                    {{ session('status') }}
+                </div>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            {{-- Formulário de login --}}
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="usuario@email.com"
+                        value="{{ old('email') }}"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="password">Senha</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+
+                {{-- Erro geral, como email ou senha incorretos --}}
+                @if (session('error'))
+                    <div class="erro-geral">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <div class="campo-checkbox">
+                    <label for="remember">
+                        <input
+                            type="checkbox"
+                            id="remember"
+                            name="remember"
+                            {{ old('remember') ? 'checked' : '' }}
+                        > Lembrar-me
+                    </label>
+                </div>
+
+                <button type="submit" class="botao">Entrar</button>
+            </form>
+
+            {{-- Link para recuperação de senha --}}
+            @if (Route::has('password.request'))
+                <a
+                    id="esqueci-senha"
+                    class="link-recuperar-senha"
+                    href="{{ route('password.request') }}"
+                >
+                    {{ __('Esqueceu a senha?') }}
+                </a>
+            @endif
         </div>
-    </form>
-</x-guest-layout>
+
+        <div class="imagem">
+            <img src="{{ asset('assets/img/reciclagem.jpeg') }}" alt="Imagem decorativa">
+        </div>
+    </div>
+</body>
+</html>

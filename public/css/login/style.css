@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: #ccc;
+}
+
+.caixa {
+    display: flex;
+    width: 1000px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.login-area {
+    width: 50%;
+    padding: 50px;
+    background: #f2f5f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-area h2 {
+    font-size: 32px;
+    color: #04df71;
+    margin-bottom: 10px;
+}
+
+.login-area p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.campo input:focus {
+    border-color: #04df71;
+}
+
+.campo-checkbox{
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 12px;
+}
+
+.botao {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 18px;
+    background: #04df71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.botao:hover {
+    background: #03c765;
+}
+
+.esqueci {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.esqueci:hover {
+    color: #000;
+}
+
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.status-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.imagem {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#esqueci-senha{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.erro-geral{
+    list-style: none;
+    color: red;
+    text-decoration: none;
+}
