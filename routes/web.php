@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DB\ArmazenamentoController;
 use App\Http\Controllers\DB\ReseduosCheController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\DashboardController;
@@ -27,6 +28,7 @@ Route::get('/dashboard', [DashboardController::class, 'page'])
 // Historio
 Route::get('/historicos', [HistoricoController::class, 'page'])->name('historicos.index');
 Route::post('/residuos/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
+Route::post('/armazenamentos', [ArmazenamentoController::class, 'store'])->name('armazenamentos.store');
 Route::get('/subtipos/{id}', function ($id) {
     return sub_reseduos::where('id_resd', $id)->get();
 });

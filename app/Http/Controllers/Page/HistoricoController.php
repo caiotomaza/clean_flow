@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Models\Armazenamento;
 use App\Models\Reseduos;
 use App\Models\Reseduos_che;
 use App\Models\Sub_reseduos;
@@ -19,7 +20,8 @@ class HistoricoController extends Controller
         $users = User::all();
 
         $registros = Reseduos_che::with(['responsavel', 'residuo', 'subresiduo'])->get();
+        $armazenamento = Armazenamento::with('residuo', 'subresiduo')->get();
     
-        return view("historicos.index", compact('placas', 'residuos', 'subresiduos', 'users', 'registros'));
+        return view("historicos.index", compact('registros', 'armazenamento', 'placas', 'residuos', 'subresiduos', 'users'));
     }
 }

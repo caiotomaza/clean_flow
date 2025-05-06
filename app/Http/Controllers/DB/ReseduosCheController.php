@@ -3,13 +3,8 @@
 namespace App\Http\Controllers\DB;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reseduos;
 use App\Models\Reseduos_che;
-use App\Models\Sub_reseduos;
 use App\Models\veiculo;
-use App\Models\Veiculo as ModelsVeiculo;
-use Carbon\Carbon;
-use Illuminate\Container\Attributes\DB;
 use Illuminate\Http\Request;
 
 class ReseduosCheController extends Controller

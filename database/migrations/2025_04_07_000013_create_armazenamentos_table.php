@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('armazenamentos', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_arm')->primary();
-            $table->unsignedBigInteger('id_sub_resd')->nullable(); // Criação da chave estrangeira.
-            $table->foreign('id_sub_resd')->references('id_sub_resd')->on('sub_reseduos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
-            $table->unsignedBigInteger('id_entrada')->nullable(); // Criação da chave estrangeira.
-            $table->foreign('id_entrada')->references('id_entrada')->on('reseduos_ches')->onDelete('set null'); // Criação da ligação da chave estrangeira.
+            $table->bigIncrements('id_arm');
+            $table->string('container');
+            $table->unsignedBigInteger('id_sub_resd')->nullable();
+            $table->foreign('id_sub_resd')->references('id_sub_resd')->on('sub_reseduos')->onDelete('set null');
+            $table->unsignedBigInteger('id_resd')->nullable();
+            $table->foreign('id_resd')->references('id_resd')->on('reseduos')->onDelete('set null');
             $table->decimal('peso', 20, 2);
             $table->timestamp('data_hora');
+            $table->string('tipo_registro')->nullable();
         });
     }
 

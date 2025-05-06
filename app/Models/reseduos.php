@@ -15,4 +15,9 @@ class Reseduos extends Model
     protected $fillable = ['nome'];
     
     public $timestamps = false;
+
+    public function armazenamentos()
+    {
+        return $this->hasMany(Armazenamento::class);
+    }
 }

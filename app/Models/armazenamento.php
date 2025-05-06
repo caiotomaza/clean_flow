@@ -4,20 +4,42 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class armazenamento extends Model
+class Armazenamento extends Model
 {
     protected $table = 'armazenamentos';
-
     protected $primaryKey = 'id_arm';
-    public $incrementing = false; // Indica se a chave primária é auto-incrementante
-    protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
+    public $incrementing = true;
+    protected $keyType = 'int';
 
-    protected $fillable = ['id_sub_resd', 'peso', 'data_hora'];
-    
-    public $timestamps = false;
- 
-    protected $casts = [
-        'ativo' => 'boolean',
-        'preco' => 'decimal:2',
+    protected $fillable = [
+        'container',
+        'id_sub_resd',
+        'id_resd',
+        'peso',
+        'data_hora',
+        'tipo_registro',
     ];
+
+    public $timestamps = false;
+
+    protected $casts = [
+        'peso' => 'decimal:2',
+        'data_hora' => 'datetime',
+    ];
+
+    /**
+     * Define o relacionamento: Um Armazenamento PERTENCE A um Reseduo.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function residuo()
+    {
+        return $this->belongsTo(Reseduos::class, 'id_resd', 'id_resd');
+    }
+
+    public function subResiduo()
+    {
+        return $this->belongsTo(Sub_reseduos::class, 'id_sub_resd', 'id_sub_resd');
+    }
+
 }
