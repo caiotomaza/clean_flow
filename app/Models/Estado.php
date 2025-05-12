@@ -12,7 +12,9 @@ class Estado extends Model
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
-    protected $fillable = ['uf'];
+    protected $fillable = [
+        'uf'
+    ];
     
     public $timestamps = false;
  
