@@ -12,12 +12,23 @@ class reseduos_sai extends Model
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
-    protected $fillable = ['id_arm', 'id_vec', 'data_hora'];
-    
+    protected $fillable = ['id_saida', 'id_arm', 'id_vec', 'data_hora'];
+
     public $timestamps = false;
  
     protected $casts = [
         'ativo' => 'boolean',
         'preco' => 'decimal:2',
     ];
+
+    public function armazenamento()
+    {
+        return $this->belongsTo(Armazenamento::class, 'id_arm', 'id_arm');
+    }
+
+    public function veiculo()
+    {
+        return $this->belongsTo(Veiculo::class, 'id_vec', 'id_vec');
+    }
+
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DB\ArmazenamentoController;
 use App\Http\Controllers\DB\ReseduosCheController;
+use App\Http\Controllers\DB\ReseduosSaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\DashboardController;
 use App\Http\Controllers\Page\EntradaController;
@@ -28,6 +29,7 @@ Route::get('/dashboard', [DashboardController::class, 'page'])
 // Registros
 Route::get('/registros', [RegistrosController::class, 'page'])->name('registros.index');
 Route::post('/residuos/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
+Route::post('/residuosSaida/store', [ReseduosSaiController::class, 'store'])->name('reseduos_sais.store');
 Route::post('/armazenamentos', [ArmazenamentoController::class, 'store'])->name('armazenamentos.store');
 Route::get('/subtipos/{id}', function ($id) {
     return sub_reseduos::where('id_resd', $id)->get();
