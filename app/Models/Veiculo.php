@@ -24,7 +24,7 @@ class Veiculo extends Model
         'preco' => 'decimal:2',
     ];
 
-    public function filial()
+    public function Filial()
     {
         return $this->belongsTo(User::class, 'id_fil');
     }

@@ -25,12 +25,12 @@ class Filial extends Model
         'preco' => 'decimal:2',
     ];
 
-    public function empresa()
+    public function Empresa()
     {
         return $this->belongsTo(User::class, 'id_emp');
     }
 
-    public function endereco()
+    public function Endereco()
     {
         return $this->belongsTo(User::class, 'id_log');
     }

@@ -12,7 +12,11 @@ class Endereco extends Model
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
-    protected $fillable = ['id_mun', 'logradouro', 'numero'];
+    protected $fillable = [
+        'id_mun',
+        'logradouro',
+        'numero'
+    ];
     
     public $timestamps = false;
  
@@ -20,4 +24,9 @@ class Endereco extends Model
         'ativo' => 'boolean',
         'preco' => 'decimal:2',
     ];
+
+    public function Municipio()
+    {
+        return $this->belongsTo(User::class, 'id_mun');
+    }
 }

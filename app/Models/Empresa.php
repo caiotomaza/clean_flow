@@ -30,7 +30,7 @@ class Empresa extends Model
         'preco' => 'decimal:2',
     ];
 
-    public function tipo_empresa()
+    public function Tipo_empresa()
     {
         return $this->belongsTo(User::class, 'id_temp');
     }
