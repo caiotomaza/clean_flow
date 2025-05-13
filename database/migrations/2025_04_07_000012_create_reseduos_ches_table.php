@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id('id_entrada'); 
             $table->unsignedBigInteger('id_vec')->nullable();
             $table->foreign('id_vec')->references('id_vec')->on('veiculos')->onDelete('set null');
-        
+
+            $table->unsignedBigInteger('id_filial')->nullable();
+            $table->foreign('id_filial')->references('id_fil')->on('filials')->onDelete('set null');
+
             $table->decimal('peso', 20, 2);
             $table->timestamp('data_hora');
         

@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('reseduos_sais', function (Blueprint $table) {
             $table->unsignedBigInteger('id_saida')->primary();
+            
+            $table->unsignedBigInteger('id_filial')->nullable();
+            $table->foreign('id_filial')->references('id_fil')->on('filials')->onDelete('set null');
+            
             $table->unsignedBigInteger('id_arm')->nullable(); // Criação da chave estrangeira.
             $table->foreign('id_arm')->references('id_arm')->on('armazenamentos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->unsignedBigInteger('id_vec')->nullable(); // Criação da chave estrangeira.
             $table->foreign('id_vec')->references('id_vec')->on('veiculos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->timestamp('data_hora');
+
+            $table->string('tipo_registro')->nullable();
         });
     }
 

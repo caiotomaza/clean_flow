@@ -32,6 +32,7 @@
           <thead>
               <tr>
                   <th>Nº de registro</th>
+                  <th>Filial</th>
                   <th>Responsável</th>
                   <th>Tipo de resíduos</th>
                   <th>Subtipo de resíduos</th>
@@ -43,6 +44,13 @@
               @foreach ($entradas as $entrada)
                   <tr>
                       <td>{{ $entrada->id_entrada }}</td>
+                      <td>
+                        @if($entrada->filial)
+                          {{ $entrada->filial->nome }}
+                        @else
+                          <span style="color: red;">Sem filial</span>
+                        @endif
+                      </td>
                       <td>{{ $entrada->responsavel?->name ?? 'N/A' }}</td>
                       <td>{{ $entrada->residuo?->nome ?? 'N/A' }}</td>
                       <td>{{ $entrada->subresiduo?->nome ?? 'N/A' }}</td>
@@ -92,6 +100,7 @@
           <thead>
               <tr>
                   <th>ID</th>
+                  <th>Filial</th>
                   <th>Armazenamento</th>
                   <th>Veículo</th>
                   <th>Data</th>
@@ -102,7 +111,15 @@
               @foreach ($saidas as $saida)
                   <tr>
                       <td>{{ $saida->id_saida }}</td>
-                      <td>{{ $saida->armazenamento?->container ?? 'N/A' }}</td>
+                      <td>
+                          {{-- CORREÇÃO AQUI --}}
+                          @if($saida->filial)
+                              {{ $saida->filial->nome }}
+                          @else
+                              <span style="color: red;">Sem filial</span>
+                          @endif
+                      </td>
+                      <td>{{ $saida->armazenamento?->container ?? 'N/A' }}</td> {{-- Presumo que 'container' seja um atributo do modelo Armazenamento --}}
                       <td>{{ $saida->veiculo?->placa ?? 'N/A' }}</td>
                       <td>{{ $saida->data_hora }}</td>
                       <th> Saída de resíduos </th>
@@ -110,7 +127,7 @@
               @endforeach
               @if(count($saidas) == 0)
               <tr>
-                <td colspan="4" style="text-align:center;">Nenhuma saída registrada.</td>
+                  <td colspan="6" style="text-align:center;">Nenhuma saída registrada.</td> {{-- Ajustado colspan para 6 colunas --}}
               </tr>
               @endif
           </tbody>
@@ -124,17 +141,24 @@
         @csrf
         <h2>Registrar Entrada</h2>
         <input type="hidden" name="tipo_registro" value="entrada">
-        
         <div class="form-group">
-          <label for="placa_veiculo">Placa do veículo:</label>
-            <select name="id_vec" id="id_vec">
-                <option value=""> Selecione </option>
-                  @foreach($placas as $veiculo)
-                    <option value="{{ $veiculo->placa }}">{{ $veiculo->placa }}</option>
-                  @endforeach
-            </select>
+        <label for="id_filial_input">Filial:</label> 
+        <select name="id_filial_input" id="id_filial_input" required> 
+          <option value="">Selecione</option>
+            @foreach($filiais as $fill)
+              <option value="{{ $fill->id_fil }}">{{ $fill->nome }}</option>
+            @endforeach
+          </select>
         </div>
-  
+        <div class="form-group">
+          <label for="id_vec">Placa do veículo:</label>
+          <select name="placa_veiculo" id="id_vec">
+            <option value="">Selecione</option>
+            @foreach($placas as $veiculo)
+              <option value="{{ $veiculo->placa }}">{{ $veiculo->placa }}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="form-group">
           <label for="peso_inicial">Peso (kg)</label>
           <input type="text" id="peso_inicial" name="peso_inicial" placeholder="1500kg" required>
@@ -143,6 +167,7 @@
         <div class="form-group">
           <label for="material_entrada">Tipo de resíduo</label> {{-- ID alterado para evitar conflito --}}
           <select name="material" id="material_entrada">
+            <option value="">Selecione</option>
             @foreach($residuos as $residuo)
               <option value="{{ $residuo->id_resd }}">{{ $residuo->nome }}</option>
             @endforeach
@@ -152,6 +177,7 @@
         <div class="form-group">
           <label for="subtitulo_material_entrada">Subtipo</label> {{-- ID alterado para evitar conflito --}}
           <select name="subtitulo_material" id="subtitulo_material_entrada">
+            <option value="">Selecione</option>
             @foreach($subresiduos as $sub)
               <option value="{{ $sub->id_sub_resd }}">{{ $sub->nome }}</option>
             @endforeach
@@ -161,6 +187,7 @@
         <div class="form-group">
           <label for="id_responsavel">Responsável</label>
           <select name="id_responsavel" id="id_responsavel">
+            <option value="">Selecione</option>
             @foreach ($users as $user)
               <option value="{{ $user->id }}">{{ $user->name }}</option>
             @endforeach
@@ -235,6 +262,16 @@
               <input type="number" name="id_saida" id="id_saida" required>
           </div>
 
+          <div class="form-group">
+            <label for="id_filial_sai">Filial:</label> 
+              <select name="id_filial_sai" id="id_filial_sai" required> 
+                <option value="">Selecione</option>
+                  @foreach($filiais as $fill)
+                  <option value="{{ $fill->id_fil }}">{{ $fill->nome }}</option>
+                  @endforeach
+              </select>
+          </div>
+
           <div>
               <label for="id_arm">Armazenamento:</label>
               <select name="id_arm" id="id_arm">
@@ -249,9 +286,9 @@
               <label for="id_vec">Veículo:</label>
               <select name="id_vec" id="id_vec">
                   <option value=""> Selecione </option>
-                    @foreach($placas as $veiculo)
-                      <option value="{{ $veiculo->placa }}">{{ $veiculo->placa }}</option>
-                    @endforeach
+                  @foreach($placas as $veiculo_item)
+                      <option value="{{ $veiculo_item->placa }}">{{ $veiculo_item->placa }}</option>
+                  @endforeach
               </select>
           </div>
 

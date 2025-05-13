@@ -13,6 +13,7 @@ class Reseduos_che extends Model
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
     protected $fillable = [
+        'id_filial',
         'id_vec',
         'peso',
         'data_hora',
@@ -42,6 +43,10 @@ class Reseduos_che extends Model
     public function subresiduo()
     {
         return $this->belongsTo(Sub_reseduos::class, 'id_sub_resd');
+    }
+    public function filial()
+    {
+        return $this->belongsTo(Filial::class, 'id_filial', 'id_fil');
     }
 
 }
