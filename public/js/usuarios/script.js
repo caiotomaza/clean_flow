@@ -1,7 +1,9 @@
 function abrirModal(id) {
-    document.getElementById(id).classList.remove('hidden');
+    const modal = document.getElementById(id);
+    if (modal) modal.classList.remove('hidden');
 }
 
 function fecharModal(id) {
-    document.getElementById(id).classList.add('hidden');
+    const modal = document.getElementById(id);
+    if (modal) modal.classList.add('hidden');
 }

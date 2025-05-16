@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
-    public function page(){
+    public function page()
+    {
         $usuarios = User::paginate(10);
         return view("usuarios.index", compact('usuarios'));
     }
@@ -17,47 +19,39 @@ class UsuariosController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'matricula' => 'required|string|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'email' => 'required|string|email|max:255|unique:users',
+            'matricula' => 'required|string|max:50|unique:users',
+            'status' => 'required|in:ativo,inativo',
         ]);
 
-        $validated['password'] = bcrypt($validated['password']);
+        $validated['password'] = Hash::make('01012025');
 
         User::create($validated);
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->back()->with('success', 'Usuário cadastrado com sucesso!');
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $usuario = User::findOrFail($id);
+
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'matricula' => 'required|string|unique:users,matricula,' . $id,
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|min:6',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+            'matricula' => 'required|string|max:50|unique:users,matricula,' . $usuario->id,
+            'status' => 'required|in:ativo,inativo',
         ]);
 
-        $usuarios = User::findOrFail($id);
-        $usuarios->name = $request->name;
-        $usuarios->cpf = $request->cpf;
-        $usuarios->email = $request->email;
-
-        if ($request->filled('password')) {
-            $usuarios->password = bcrypt($request->password);
-        }
-
-        $usuarios->save();
+        $usuario->update($validated);
 
         return redirect()->back()->with('success', 'Usuário atualizado com sucesso!');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $usuario = User::findOrFail($id);
         $usuario->delete();
 
-        return redirect()->route('usuarios.index')->with('sucess', 'Usuário deletado com sucesso!');
-
+        return redirect()->route('usuarios.index')->with('success', 'Usuário deletado com sucesso!');
     }
-
 }

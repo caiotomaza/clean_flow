@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('matricula')->unique();
             $table->string('email')->unique();
+            $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

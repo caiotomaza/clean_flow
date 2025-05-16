@@ -12,6 +12,13 @@
             <h2><strong>Bem-vindo</strong></h2>
             <p>Entre na sua conta para acessar o sistema</p>
 
+            @error('email')
+                <div class="alert alert-danger" style="color: red">
+                    {{ $message }}
+                </div>
+            @enderror
+            <br>
+
             {{-- Mensagem de status, como confirmação de senha alterada --}}
             @if (session('status'))
                 <div class="status-message">
