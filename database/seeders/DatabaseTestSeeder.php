@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseTestSeeder extends Seeder
@@ -16,11 +17,13 @@ class DatabaseTestSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'name' => 'teste',
-            'matricula' => '00001',
-            'email' => 'teste@gmail.com',
-            'status' => 'ativo',
-            'password' =>  Hash::make('teste1234')
+        'name' => 'Teste1',
+        'email' => 'teste@unifapce.com.br', 
+        'matricula' => '001', 
+        'status' => 'Ativo', 
+        'password' => Hash::make('Teste@123'),
+        'email_verified_at' => now(),
+        'remember_token' => Str::random(10),
         ]);
          // Estados
          DB::table('estados')->insert([
