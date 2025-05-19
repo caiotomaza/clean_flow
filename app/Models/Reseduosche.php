@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reseduos_che extends Model
+class Reseduosche extends Model
 {
-    protected $table = 'reseduos_ches';
+     use HasFactory;
 
-    protected $primaryKey = 'id_entrada';
+    protected $table = 'reseduos_ches'; // garanta que o nome da tabela esteja correto
+    protected $primaryKey = 'id_entrada'; // personalizado, pois não é 'id'
     public $incrementing = true; // Indica se a chave primária é auto-incrementante
     protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
 
@@ -42,7 +44,7 @@ class Reseduos_che extends Model
 
     public function subresiduo()
     {
-        return $this->belongsTo(Sub_reseduos::class, 'id_sub_resd');
+        return $this->belongsTo(SubReseduos::class, 'id_sub_resd');
     }
     public function filial()
     {

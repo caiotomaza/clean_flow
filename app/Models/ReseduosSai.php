@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reseduos_sai extends Model
+class reseduosSai extends Model
 {
+
+    use HasFactory;
+    
     protected $table = 'reseduos_sais';
 
     protected $primaryKey = 'id_saida';

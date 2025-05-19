@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reseduos extends Model
 {
+    use HasFactory;
+
     protected $table = 'reseduos';
 
     protected $primaryKey = 'id_resd';

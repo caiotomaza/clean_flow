@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('veiculos', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_vec')->primary();
+            $table->id('id_vec');
             $table->unsignedBigInteger('id_fil')->nullable(); // Criação da chave estrangeira.
             $table->foreign('id_fil')->references('id_fil')->on('filials')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->string('placa');

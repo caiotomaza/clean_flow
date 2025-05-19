@@ -18,6 +18,9 @@
             <a href="{{ route('registros.index')}}">
                 <button class="custom-menu-item {{ request()->is('registros*') ? 'active' : '' }}">Registros</button>
             </a>
+            <a href="{{ route('relatorios.index')}}">
+                <button class="custom-menu-item {{ request()->is('registros*') ? 'active' : '' }}">Relatorios</button>
+            </a>
             <a href="{{ route('cadastros.index')}}">
                 <button class="custom-menu-item {{ request()->is('cadastros*') ? 'active' : '' }}">Cadastros</button>
             </a>

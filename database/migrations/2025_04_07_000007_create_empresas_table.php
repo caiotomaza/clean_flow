@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('id_temp')->references('id_temp')->on('tipo_empresas')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->text('nome_fans');
             $table->text('razao_social');
-            $table->integer('cnpj');
+            $table->string('cnpj');
             $table->integer('ie');
             $table->integer('im');
             $table->string('email');

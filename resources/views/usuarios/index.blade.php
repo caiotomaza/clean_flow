@@ -3,11 +3,14 @@
 @section('title', 'Usuários Cadastrados')
 
 @section('head')
-    <link rel="stylesheet" href="{{ asset('css/usuarios/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usuarios/style2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/usuarios/modal.css') }}">
 @endsection
 
 @section('content')
+
+<!-- Adicione este CSS no seu arquivo de estilos -->
+
 <main class="content">
     @if(session('success'))
         <div class="alert alert-success" role="alert">
@@ -61,11 +64,11 @@
                 @endforelse
             </tbody>
         </table>
+        <!-- Paginação -->
+        <div class="d-flex justify-content-center">
+            {{ $usuarios->links('pagination::bootstrap-4') }}
+        </div>
     </section>
-
-    @if($usuarios->links())
-        <nav>{{ $usuarios->links() }}</nav>
-    @endif
 
     <!-- Modal de Cadastro de Usuário -->
     <div id="modalCadastro" class="modal hidden">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Armazenamento;
 use App\Models\reseduos_sai;
+use App\Models\reseduosSai;
 use App\Models\Veiculo;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Cast\String_;
@@ -22,7 +23,7 @@ class ReseduosSaiController extends Controller
             'data_hora' => 'required|date',
         ]);
 
-        $saida = new reseduos_sai();
+        $saida = new reseduosSai();
         $saida->id_saida = $validated['id_saida'];
         $saida->id_filial = $validated['id_filial_sai'];
         $saida->id_arm = $validated['id_arm'] ?? null;

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
+    use HasFactory;
+
     protected $table = 'empresas';
 
     protected $primaryKey = 'id_emp';
@@ -30,8 +33,8 @@ class Empresa extends Model
         'preco' => 'decimal:2',
     ];
 
-    public function Tipo_empresa()
+    public function tipoEmpresa()
     {
-        return $this->belongsTo(User::class, 'id_temp');
+        return $this->belongsTo(TipoEmpresa::class, 'id_temp');
     }
 }

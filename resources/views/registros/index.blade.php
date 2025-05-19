@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-    <link rel="stylesheet" href="{{ asset('css/registros/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/registros/styleRegistro.css') }}">
     <link rel="stylesheet" href="{{ asset('css/registros/modalArmazenamento.css') }}">
     <link rel="stylesheet" href="{{ asset('css/registros/modal_carga.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,7 @@
       <button class="button-saida" onclick="abrirPopupResiduoSaida()">Registrar saída</button>
   </div>
   <div class="visualizacao-tabelas">
+    <!-- Adicione este botão em sua view existente -->
     <button onclick="mostrarTabela('entrada')">Ver Entradas</button>
     <button onclick="mostrarTabela('armazenamento')">Ver Armazenamentos</button>
     <button onclick="mostrarTabela('saida')">Ver Saídas</button>

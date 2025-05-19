@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Armazenamento extends Model
 {
+
+     use HasFactory;
+     
     protected $table = 'armazenamentos';
     protected $primaryKey = 'id_arm';
     public $incrementing = true;
@@ -39,7 +43,7 @@ class Armazenamento extends Model
 
     public function subResiduo()
     {
-        return $this->belongsTo(Sub_reseduos::class, 'id_sub_resd', 'id_sub_resd');
+        return $this->belongsTo(SubReseduos::class, 'id_sub_resd', 'id_sub_resd');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Filial;
 use App\Models\Reseduos_che;
+use App\Models\Reseduosche;
 use App\Models\veiculo;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ReseduosCheController extends Controller
 
 
         // Criar e salvar
-        $reseduo = new Reseduos_che();
+        $reseduo = new Reseduosche();
         $reseduo->id_filial = $validated['id_filial_input'] ?? null;
         $reseduo->peso = $validated['peso_inicial'];
         $reseduo->data_hora = $validated['data_armazenamento'];

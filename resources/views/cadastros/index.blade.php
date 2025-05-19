@@ -4,7 +4,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/relatorios/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/relatorios/style2.css')}}">
     <link rel="stylesheet" href="{{asset('css/relatorios/modal.css')}}">
 @endsection
 
@@ -118,9 +118,6 @@
             </form>
         </div>
     </div>
-
-    {{-- Certifique-se que estes scripts são carregados APÓS o HTML do modal --}}
-    {{-- e que o modal.js é carregado antes dos outros se eles dependerem do modal --}}
     <script>
         // Get the modal
         var modal = document.getElementById("relatorioModal");

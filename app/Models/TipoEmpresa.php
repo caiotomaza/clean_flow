@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo_empresa extends Model
+class TipoEmpresa extends Model
 {
+    use HasFactory;
+
     protected $table = 'tipo_empresas';
 
     protected $primaryKey = 'id_temp';

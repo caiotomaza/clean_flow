@@ -4,14 +4,12 @@ use App\Http\Controllers\DB\ArmazenamentoController;
 use App\Http\Controllers\DB\ReseduosCheController;
 use App\Http\Controllers\DB\ReseduosSaiController;
 use App\Http\Controllers\Page\DashboardController;
-use App\Http\Controllers\Page\EntradaController;
-use App\Http\Controllers\Page\EntradaMaterialController;
 use App\Http\Controllers\Page\RegistrosController;
-use App\Http\Controllers\Page\RegisterUserController;
 use App\Http\Controllers\Page\CadastrosController;
 use App\Http\Controllers\Page\UsuariosController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\page\RelatorioController;
 use App\Models\sub_reseduos;
+use App\Models\SubReseduos;
 
 require __DIR__ . '/auth.php';
 
@@ -32,8 +30,15 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\VerificaStatusAtivo:
     Route::post('/residuosSaida/store', [ReseduosSaiController::class, 'store'])->name('reseduos_sais.store');
     Route::post('/armazenamentos', [ArmazenamentoController::class, 'store'])->name('armazenamentos.store');
     Route::get('/subtipos/{id}', function ($id) {
-        return sub_reseduos::where('id_resd', $id)->get();
+        return SubReseduos::where('id_resd', $id)->get();
     });
+
+    //Relatorios
+    Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
+    Route::get('/relatorio/completo', [RelatorioController::class, 'gerarRelatorioCompleto'])->name('relatorio.completo');
+    Route::get('/relatorio/diario', [RelatorioController::class, 'gerarRelatorioDiario'])->name('relatorio.diario');
+    Route::get('/relatorio/semanal', [RelatorioController::class, 'gerarRelatorioSemanal'])->name('relatorio.semanal');
+    Route::get('/relatorio/mensal', [RelatorioController::class, 'gerarRelatorioMensal'])->name('relatorio.mensal');
 
     // Cadastros
     Route::get('/cadastros', [CadastrosController::class, 'page'])->name('cadastros.index');

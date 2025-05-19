@@ -10,19 +10,17 @@ body {
   padding: 30px;
 }
 
+.top-header {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    width: 200px;
+}
+
+
 h1 {
   color: green;
   margin-bottom: 10px;
-}
-
-.btn-add {
-  background: green;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-bottom: 20px;
 }
 
 .user-table {
@@ -34,19 +32,27 @@ h1 {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
+/* estilizando o cabeçalho */
+.user-table thead {
+  background: #f2f2f2;
+}
+
+/* linhas pares com fundo mais claro */
+.user-table tbody tr:nth-child(even) {
+  background-color: #E2E8F0; /* cinza bem claro */
+}
+
+/* linhas ímpares com fundo branco */
+.user-table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+/* manter seu padding e estilo das células */
 .user-table th,
 .user-table td {
   padding: 15px;
   text-align: left;
   font-size: 14px;
-}
-
-.user-table thead {
-  background: #f2f2f2;
-}
-
-.alt-row {
-  background: #f9f9f9;
 }
 
 .status {
@@ -260,9 +266,35 @@ h1 {
   overflow: hidden;
 }
 
-.top-header {
-display: flex;
-justify-content: left;
-flex-direction: column;
-width: 121px;
-}
+/* pagination */
+
+  .pagination {
+      list-style: none;
+      margin-top: 20px;
+  }
+
+  .page-item.active .page-link {
+      background-color: #00bd04;
+      border-color: #00bd04;
+      color: white;
+  }
+
+  .page-link {
+      color: #000000;
+      margin: 0 5px;
+      border-radius: 3px;
+      padding: 8px 16px;
+      border: 1px solid #dee2e6;
+  }
+
+  .page-link:hover {
+      background-color: #e9ecef;
+      color: #0056b3;
+  }
+
+  .disabled .page-link {
+      color: #6c757d;
+      pointer-events: none;
+      background-color: #fff;
+      border-color: #dee2e6;
+  }
