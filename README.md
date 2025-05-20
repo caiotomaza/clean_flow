@@ -74,6 +74,12 @@ REDIS_PORT=6379
    php artisan migrate
    ```
 
+8. **Criar as seeds e factories no banco de dados para testes**  
+   ```bash
+   php artisan db:seed
+   ```
+
+
 ### 🎯 Acesse o Projeto  
 
 - **Front-end:** [http://localhost/](http://localhost/)  
@@ -93,4 +99,8 @@ docker-compose up -d
 ### Remover containers
 ```bash
 docker-compose down
+```
+### Reset do data base
+```bash
+php artisan migrate:fresh --seed
 ```
