@@ -3,11 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Database\Seeders\ResiduosSeeder as SeedersResiduosSeeder;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
-use ResiduosSeeder;
 
 class DatabaseSeeder extends Seeder{
     public function run(): void{
@@ -31,8 +28,8 @@ class DatabaseSeeder extends Seeder{
 
         // Chamando os seeders relacionados aos modelos acima
         $this->call([
-            ReseduosChesSeeder::class,
-            ReseduosSaisSeeder::class,
+            ResiduosChesSeeder::class,
+            ResiduosSaisSeeder::class,
             ArmazenamentosSeeder::class,
             UsersTesteSeeder::class,
         ]);

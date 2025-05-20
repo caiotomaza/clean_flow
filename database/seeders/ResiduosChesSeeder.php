@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Reseduosche;
+use App\Models\ResiduosChe;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ReseduosChesSeeder extends Seeder
+class ResiduosChesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ReseduosChesSeeder extends Seeder
     public function run(): void
     {
         // Criar 50 registros fake
-        Reseduosche::factory()->count(20)->create();
+        ResiduosChe::factory()->count(20)->create();
     }
 }
