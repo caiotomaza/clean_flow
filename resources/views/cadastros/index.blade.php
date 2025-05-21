@@ -4,7 +4,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/cadastros/style2.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cadastros/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/cadastros/modal.css')}}">
 @endsection
 
@@ -21,7 +21,7 @@
 
         {{-- Filtros das tabelas --}}
         <div class="visualizacao-tabelas">
-            <button onclick="MostrarTabela('veiculos')">Veículos</button>
+            <button onclick="MostrarTabela('veiculo')">Veículos</button>
             <button onclick="MostrarTabela('filial')">Filiais</button>
             <button onclick="MostrarTabela('empresa')">Empresas</button>
         </div>
@@ -33,6 +33,7 @@
                 <thead>
                     <tr>
                         <th>Nº de registro</th>
+                        <th>Empresa</th>
                         <th>Filial</th>
                         <th>Placa</th>
                     </tr>
@@ -43,13 +44,19 @@
                             <td>{{ $veiculo->id_vec }}</td>
                             <td>
                                 @if($veiculo->filial)
+                                {{ $veiculo->filial->empresa->nome }}
+                                @else
+                                <span style="color: red;">N/A</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($veiculo->filial)
                                 {{ $veiculo->filial->nome }}
                                 @else
-                                <span style="color: red;">Sem filial</span>
+                                <span style="color: red;">N/A</span>
                                 @endif
                             </td>
                             <td>{{ $veiculo->placa }}</td>
-                            <td>Veículos</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -77,7 +84,6 @@
                             <td>{{ $filial->Endereco?->nome ?? 'N/A' }}</td>
                             <td>{{ $filial->Municipio?->nome ?? 'N/A' }}</td>
                             <td>{{ $filial->Estado?->uf ?? 'N/A' }}</td>
-                            <td>Filiais</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -105,6 +111,13 @@
                     @foreach ($empresas as $empresa)
                         <tr>
                             <td>{{ $empresa->id_emp }}</td>
+                            <td>
+                                @if($empresa->tipo_empresa)
+                                {{$empresa->tipo_empresa->nome }}
+                                @else
+                                <span style="color: red;">N/A</span>
+                                @endif
+                            </td>
                             <td>{{ $empresa->nome_fans }}</td>
                             <td>{{ $empresa->razao_social }}</td>
                             <td>{{ $empresa->cnpj }}</td>
@@ -112,7 +125,6 @@
                             <td>{{ $empresa->im }}</td>
                             <td>{{ $empresa->email }}</td>
                             <td>{{ $empresa->telefone }}</td>
-                            <td>Empresas</td>
                         </tr>
                     @endforeach
                 </tbody>

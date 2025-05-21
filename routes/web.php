@@ -42,9 +42,9 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\VerificaStatusAtivo:
 
     // Cadastros
     Route::get('/cadastros', [CadastrosController::class, 'page'])->name('cadastros.index');
-    Route::post('/veiculo/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
-    Route::post('/filial/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
-    Route::post('/empresa/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
+    Route::post('/veiculo/store', [ReseduosCheController::class, 'store'])->name('veiculo.store');
+    Route::post('/filial/store', [ReseduosCheController::class, 'store'])->name('filial.store');
+    Route::post('/empresa/store', [ReseduosCheController::class, 'store'])->name('empresa.store');
 
     // Usuários
     Route::get('/usuarios', [UsuariosController::class, 'page'])->name('usuarios.index');
