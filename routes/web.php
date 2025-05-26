@@ -8,7 +8,12 @@ use App\Http\Controllers\Page\RegistrosController;
 use App\Http\Controllers\Page\CadastrosController;
 use App\Http\Controllers\Page\UsuariosController;
 use App\Http\Controllers\page\RelatorioController;
-use App\Models\sub_reseduos;
+use App\Http\Controllers\DB\VeiculoController;
+use App\Http\Controllers\DB\FilialController;
+use App\Http\Controllers\DB\EmpresaController;
+use App\Http\Controllers\DB\EnderecoController;
+use App\Http\Controllers\DB\MunicipioController;
+use App\Http\Controllers\DB\EstadoController;
 use App\Models\SubReseduos;
 
 require __DIR__ . '/auth.php';
@@ -42,9 +47,12 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\VerificaStatusAtivo:
 
     // Cadastros
     Route::get('/cadastros', [CadastrosController::class, 'page'])->name('cadastros.index');
-    Route::post('/veiculo/store', [ReseduosCheController::class, 'store'])->name('veiculo.store');
-    Route::post('/filial/store', [ReseduosCheController::class, 'store'])->name('filial.store');
-    Route::post('/empresa/store', [ReseduosCheController::class, 'store'])->name('empresa.store');
+    Route::post('/veiculo/store', [VeiculoController::class, 'store'])->name('veiculo.store');
+    Route::post('/filial/store', [FilialController::class, 'store'])->name('filial.store');
+    Route::post('/empresa/store', [EmpresaController::class, 'store'])->name('empresa.store');
+
+    Route::resource('municipios', MunicipioController::class);
+
 
     // Usuários
     Route::get('/usuarios', [UsuariosController::class, 'page'])->name('usuarios.index');

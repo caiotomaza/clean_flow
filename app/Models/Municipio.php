@@ -1,34 +1,33 @@
 <?php
+    namespace App\Models;
 
-namespace App\Models;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    class Municipio extends Model{
+        use HasFactory;
+        
+        protected $table = 'municipios';
 
-class Municipio extends Model
-{
-    use HasFactory;
+        protected $primaryKey = 'id_mun';
+        public $incrementing = true; // Indica se a chave primária é auto-incrementante
+        protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
+
+        protected $fillable = [
+            'id_est',
+            'nome'
+        ];
+        
+        public $timestamps = false;
     
-    protected $table = 'municipios';
+        protected $casts = [
+            'ativo' => 'boolean',
+            'preco' => 'decimal:2',
+        ];
 
-    protected $primaryKey = 'id_mun';
-    public $incrementing = true; // Indica se a chave primária é auto-incrementante
-    protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
-
-    protected $fillable = [
-        'id_est',
-        'nome'
-    ];
-    
-    public $timestamps = false;
- 
-    protected $casts = [
-        'ativo' => 'boolean',
-        'preco' => 'decimal:2',
-    ];
-
-    public function Estado()
-    {
-        return $this->belongsTo(User::class, 'id_est');
+        public function estado()
+        {
+            return $this->belongsTo(Estado::class, 'id_est');
+        }
     }
-}
+?>

@@ -1,55 +1,56 @@
 <?php
+    namespace App\Http\Controllers\DB;
 
-namespace App\Http\Controllers\DB;
+    use App\Http\Controllers\Controller;
+    use App\Models\Municipio;
+    use App\Models\Estado;
+    use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
-use App\Models\Municipio;
-use Illuminate\Http\Request;
-
-class MunicipioController extends Controller
-{
-    //Cadastrar
-    public function store(Request $request)
+    class MunicipioController extends Controller
     {
-        // Validação
-        $validated = $request->validate([
-            'id_est' => 'nullable|numeric|exists:estados,id_est', 
-            'nome' => 'nullable|string|exists:municipios,id_mun', 
-        ]);
+        // Listar
+        public function index()
+        {
+            $municipios = Municipio::all();
+            $estados = Estado::all();
+            return view('cadastros.index', compact('municipios', 'estados'));
+        }
 
-        // Criar
-        $municipio = new Municipio();
-        $municipio->id_est = $validated['id_est'];
-        $municipio->nome = $validated['nome'];
-        $municipio->save();
+        // Cadastrar
+        public function store(Request $request)
+        {
+            $validated = $request->validate([
+                'id_est' => 'required|numeric|exists:estados,id_est',
+                'nome' => 'required|string|unique:municipios,nome',
+            ]);
 
-        return redirect()->back()->with('success', 'Municipio cadastrada com sucesso.');
+            Municipio::create($validated);
+
+            return redirect()->back()->with('success', 'Município cadastrado com sucesso.');
+        }
+
+        // Atualizar
+        public function update(Request $request, $id)
+        {
+            $municipio = Municipio::findOrFail($id);
+
+            $validated = $request->validate([
+                'id_est' => 'required|numeric|exists:estados,id_est',
+                'nome' => 'required|string|unique:municipios,nome,' . $id . ',id_mun',
+            ]);
+
+            $municipio->update($validated);
+
+            return redirect()->back()->with('success', 'Município atualizado com sucesso.');
+        }
+
+        // Deletar
+        public function destroy($id)
+        {
+            $municipio = Municipio::findOrFail($id);
+            $municipio->delete();
+
+            return redirect()->back()->with('success', 'Município removido com sucesso.');
+        }
     }
-
-    //Atualizar
-    public function update(Request $request, $id)
-    {
-        $municipio = Municipio::findOrFail($id);
-
-        // Validação
-        $validated = $request->validate([
-            'id_est' => 'nullable|numeric|exists:estados,id_est', 
-            'nome' => 'nullable|string|exists:municipios,id_mun', 
-        ]);
-
-        $municipio->id_est = $validated['id_est'];
-        $municipio->nome = $validated['nome'];
-        $municipio->save();
-
-        return redirect()->back()->with('success', 'Municipio atualizada com sucesso.');
-    }
-
-    //Deletar
-    public function destroy($id)
-    {
-        $municipio = Municipio::findOrFail($id);
-        $municipio->delete();
-
-        return redirect()->back()->with('success', 'Municipio removida com sucesso.');
-    }
-}
+?>
