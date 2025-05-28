@@ -17,7 +17,7 @@ class ArmazenamentoController extends Controller
             'data_hora' => 'required|date',
             'material' => 'nullable|numeric',
             'subtitulo_material' => 'nullable|numeric',
-            'tipo_registro' => 'required|string|in:entrada,armazenamento',
+            'tipo_registro' => 'required|string|in:armazenamento',
         ]);
     
         // Criar e salvar

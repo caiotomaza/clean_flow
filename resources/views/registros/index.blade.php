@@ -11,130 +11,150 @@
 
 @section('content')
 
-<main>
-  <h1 class="title">Registros</h1>
+<main class="max-w-7xl mx-auto px-4 py-8 space-y-10">
+  <h1 class="text-4xl font-bold text-gray-800 mb-6">Registros</h1>
 
-  <div class="entrada-saida">
-      <button class="button-entrada" onclick="abrirPopupResiduos()">Registrar entrada</button>
-      <button class="button-armazenamento" onclick="abrirPopup()">Registrar armazenamento</button>
-      <button class="button-saida" onclick="abrirPopupResiduoSaida()">Registrar saída</button>
-  </div>
-  <div class="visualizacao-tabelas">
-    <!-- Adicione este botão em sua view existente -->
-    <button onclick="mostrarTabela('entrada')">Ver Entradas</button>
-    <button onclick="mostrarTabela('armazenamento')">Ver Armazenamentos</button>
-    <button onclick="mostrarTabela('saida')">Ver Saídas</button>
+  <!-- Botões de Ação -->
+  <div class="flex flex-wrap gap-4">
+    <button onclick="abrirPopupResiduos()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded shadow transition">
+      Registrar entrada
+    </button>
+    <button onclick="abrirPopup()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded shadow transition">
+      Registrar armazenamento
+    </button>
+    <button onclick="abrirPopupResiduoSaida()" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded shadow transition">
+      Registrar saída
+    </button>
   </div>
 
-  {{-- Seção: Entrada --}}
+  <!-- Botões de Visualização -->
+  <div class="flex flex-wrap gap-4 mt-6">
+    <button onclick="mostrarTabela('entrada')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">
+      Ver Entradas
+    </button>
+    <button onclick="mostrarTabela('armazenamento')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">
+      Ver Armazenamentos
+    </button>
+    <button onclick="mostrarTabela('saida')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">
+      Ver Saídas
+    </button>
+  </div>
+
+  <!-- Tabela de Entradas -->
   <div id="tabela-entrada" class="tabela-secao">
-      <h2>Entradas de Resíduos</h2>
-      <table>
-          <thead>
-              <tr>
-                  <th>Nº de registro</th>
-                  <th>Filial</th>
-                  <th>Responsável</th>
-                  <th>Tipo de resíduos</th>
-                  <th>Subtipo de resíduos</th>
-                  <th>Peso (kg)</th>
-                  <th>Tipo de registro</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($entradas as $entrada)
-                  <tr>
-                      <td>{{ $entrada->id_entrada }}</td>
-                      <td>
-                        @if($entrada->filial)
-                          {{ $entrada->filial->nome }}
-                        @else
-                          <span style="color: red;">Sem filial</span>
-                        @endif
-                      </td>
-                      <td>{{ $entrada->responsavel?->name ?? 'N/A' }}</td>
-                      <td>{{ $entrada->residuo?->nome ?? 'N/A' }}</td>
-                      <td>{{ $entrada->subresiduo?->nome ?? 'N/A' }}</td>
-                      <td>{{ $entrada->peso }}</td>
-                      <td>Entrada de resíduos</td>
-                  </tr>
-              @endforeach
-          </tbody>
+    <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4">Entradas de Resíduos</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 rounded shadow">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-2 text-left">Nº de registro</th>
+            <th class="px-4 py-2 text-left">Filial</th>
+            <th class="px-4 py-2 text-left">Responsável</th>
+            <th class="px-4 py-2 text-left">Tipo de resíduos</th>
+            <th class="px-4 py-2 text-left">Subtipo de resíduos</th>
+            <th class="px-4 py-2 text-left">Peso (kg)</th>
+            <th class="px-4 py-2 text-left">Tipo de registro</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          @foreach ($entradas as $entrada)
+            <tr class="border-t">
+              <td class="px-4 py-2">{{ $entrada->id_entrada }}</td>
+              <td class="px-4 py-2">
+                @if($entrada->filial)
+                  {{ $entrada->filial->nome }}
+                @else
+                  <span class="text-red-600">Sem filial</span>
+                @endif
+              </td>
+              <td class="px-4 py-2">{{ $entrada->responsavel?->name ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $entrada->residuo?->nome ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $entrada->subresiduo?->nome ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $entrada->peso }}</td>
+              <td class="px-4 py-2">Entrada de resíduos</td>
+            </tr>
+          @endforeach
+        </tbody>
       </table>
+    </div>
   </div>
 
-  {{-- Seção: Armazenamento --}}
-  <div id="tabela-armazenamento" class="tabela-secao" style="display:none;">
-      <h2>Resíduos Armazenados</h2>
-      <table>
-          <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Container</th>
-                  <th>Tipo</th>
-                  <th>Subtipo</th>
-                  <th>Peso</th>
-                  <th>Data</th>
-                  <th>Tipo de registro</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($armazenamentos as $arm)
-                  <tr>
-                      <td>{{ $arm->id_arm }}</td>
-                      <td>{{ $arm->container }}</td>
-                      <td>{{ $arm->residuo?->nome ?? 'N/A' }}</td>
-                      <td>{{ $arm->subresiduo?->nome ?? 'N/A' }}</td>
-                      <td>{{ $arm->peso }}</td>
-                      <td>{{ $arm->data_hora }}</td>
-                      <td> Resíduo armazenado</td>
-                  </tr>
-              @endforeach
-          </tbody>
+  <!-- Tabela de Armazenamento -->
+  <div id="tabela-armazenamento" class="tabela-secao hidden">
+    <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4">Resíduos Armazenados</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 rounded shadow">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-2 text-left">ID</th>
+            <th class="px-4 py-2 text-left">Container</th>
+            <th class="px-4 py-2 text-left">Tipo</th>
+            <th class="px-4 py-2 text-left">Subtipo</th>
+            <th class="px-4 py-2 text-left">Peso</th>
+            <th class="px-4 py-2 text-left">Data</th>
+            <th class="px-4 py-2 text-left">Tipo de registro</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          @foreach ($armazenamentos as $arm)
+            <tr class="border-t">
+              <td class="px-4 py-2">{{ $arm->id_arm }}</td>
+              <td class="px-4 py-2">{{ $arm->container }}</td>
+              <td class="px-4 py-2">{{ $arm->residuo?->nome ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $arm->subresiduo?->nome ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $arm->peso }}</td>
+              <td class="px-4 py-2">{{ $arm->data_hora }}</td>
+              <td class="px-4 py-2">Resíduo armazenado</td>
+            </tr>
+          @endforeach
+        </tbody>
       </table>
+    </div>
   </div>
 
-  {{-- Seção: Saída --}}
-  <div id="tabela-saida" class="tabela-secao" style="display:none;">
-      <h2>Saídas de Resíduos</h2>
-      <table>
-          <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Filial</th>
-                  <th>Armazenamento</th>
-                  <th>Veículo</th>
-                  <th>Data</th>
-                  <th>Tipo de registro</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($saidas as $saida)
-                  <tr>
-                      <td>{{ $saida->id_saida }}</td>
-                      <td>
-                          {{-- CORREÇÃO AQUI --}}
-                          @if($saida->filial)
-                              {{ $saida->filial->nome }}
-                          @else
-                              <span style="color: red;">Sem filial</span>
-                          @endif
-                      </td>
-                      <td>{{ $saida->armazenamento?->container ?? 'N/A' }}</td> {{-- Presumo que 'container' seja um atributo do modelo Armazenamento --}}
-                      <td>{{ $saida->veiculo?->placa ?? 'N/A' }}</td>
-                      <td>{{ $saida->data_hora }}</td>
-                      <th> Saída de resíduos </th>
-                  </tr>
-              @endforeach
-              @if(count($saidas) == 0)
-              <tr>
-                  <td colspan="6" style="text-align:center;">Nenhuma saída registrada.</td> {{-- Ajustado colspan para 6 colunas --}}
-              </tr>
-              @endif
-          </tbody>
+  <!-- Tabela de Saída -->
+  <div id="tabela-saida" class="tabela-secao hidden">
+    <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4">Saídas de Resíduos</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 rounded shadow">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-2 text-left">ID</th>
+            <th class="px-4 py-2 text-left">Filial</th>
+            <th class="px-4 py-2 text-left">Armazenamento</th>
+            <th class="px-4 py-2 text-left">Veículo</th>
+            <th class="px-4 py-2 text-left">Data</th>
+            <th class="px-4 py-2 text-left">Tipo de registro</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          @foreach ($saidas as $saida)
+            <tr class="border-t">
+              <td class="px-4 py-2">{{ $saida->id_saida }}</td>
+              <td class="px-4 py-2">
+                @if($saida->filial)
+                  {{ $saida->filial->nome }}
+                @else
+                  <span class="text-red-600">Sem filial</span>
+                @endif
+              </td>
+              <td class="px-4 py-2">{{ $saida->armazenamento?->container ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $saida->veiculo?->placa ?? 'N/A' }}</td>
+              <td class="px-4 py-2">{{ $saida->data_hora }}</td>
+              <td class="px-4 py-2">Saída de resíduos</td>
+            </tr>
+          @endforeach
+          @if(count($saidas) == 0)
+            <tr>
+              <td colspan="6" class="text-center text-gray-500 py-4">Nenhuma saída registrada.</td>
+            </tr>
+          @endif
+        </tbody>
       </table>
+    </div>
   </div>
 </main>
+
 
 <div class="popup-container" id="popupResiduos">
     <div class="popup">

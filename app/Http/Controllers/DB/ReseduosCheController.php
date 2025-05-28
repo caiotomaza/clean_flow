@@ -8,9 +8,13 @@ use App\Models\Reseduos_che;
 use App\Models\Reseduosche;
 use App\Models\veiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ReseduosCheController extends Controller
 {
+
+
     public function store(Request $request)
     {
         // Validação dos campos
@@ -37,12 +41,13 @@ class ReseduosCheController extends Controller
         $reseduo->id_responsavel = $validated['id_responsavel'] ?? null;
         $reseduo->tipo_registro = $validated['tipo_registro'];
 
-        if ($request->filled('id_vec')) {
-            $veiculo = Veiculo::where('placa', $request->input('id_vec'))->first();
+        if (!empty($validated['placa_veiculo'])) {
+            $veiculo = Veiculo::where('placa', $validated['placa_veiculo'])->first();
             $reseduo->id_vec = $veiculo?->id_vec;
         } else {
             $reseduo->id_vec = null;
         }
+
                     
         $reseduo->save();
     

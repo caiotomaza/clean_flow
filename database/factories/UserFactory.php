@@ -15,11 +15,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'matricula' => $this->faker->unique()->numerify('##########'), // Ex: 1234567890
+            'matricula' => $this->faker->unique()->numerify('##########'), 
             'email' => $this->faker->unique()->safeEmail(),
             'status' => $this->faker->randomElement(['ativo', 'inativo']),
             'email_verified_at' => now(),
-            'password' => bcrypt('senhaPadrao'), // Altere conforme necessário
+            'password' => bcrypt('senhaPadrao'),
             'remember_token' => Str::random(10),
         ];
     }

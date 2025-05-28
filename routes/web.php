@@ -23,6 +23,9 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\VerificaStatusAtivo:
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'page'])->name('dashboard.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+
 
     // Registros
     Route::get('/registros', [RegistrosController::class, 'page'])->name('registros.index');

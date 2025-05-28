@@ -37,7 +37,7 @@ class ReseduosSaiController extends Controller
             $saida->id_vec = null;
         }
 
-        $saida->tipo_registro = 'saidas';
+        $saida->tipo_registro = 'saida';
 
         $saida->save();
 
