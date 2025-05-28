@@ -15,9 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id_arm');
             $table->string('container');
             $table->unsignedBigInteger('id_sub_resd')->nullable();
-            $table->foreign('id_sub_resd')->references('id_sub_resd')->on('sub_reseduos')->onDelete('set null');
+            $table->foreign('id_sub_resd')->references('id_sub_resd')->on('sub_residuos')->onDelete('set null');
             $table->unsignedBigInteger('id_resd')->nullable();
-            $table->foreign('id_resd')->references('id_resd')->on('reseduos')->onDelete('set null');
+            $table->foreign('id_resd')->references('id_resd')->on('residuos')->onDelete('set null');
             $table->decimal('peso', 20, 2);
             $table->timestamp('data_hora');
             $table->string('tipo_registro')->nullable();

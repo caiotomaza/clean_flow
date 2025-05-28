@@ -1,49 +1,46 @@
 <?php
+    namespace App\Models;
 
-namespace App\Models;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    class Armazenamento extends Model{
+        use HasFactory;
+        
+        protected $table = 'armazenamentos';
+        protected $primaryKey = 'id_arm';
+        public $incrementing = true;
+        protected $keyType = 'int';
 
-class Armazenamento extends Model
-{
+        protected $fillable = [
+            'container',
+            'id_sub_resd',
+            'id_resd',
+            'peso',
+            'data_hora',
+            'tipo_registro',
+        ];
 
-     use HasFactory;
-     
-    protected $table = 'armazenamentos';
-    protected $primaryKey = 'id_arm';
-    public $incrementing = true;
-    protected $keyType = 'int';
+        public $timestamps = false;
 
-    protected $fillable = [
-        'container',
-        'id_sub_resd',
-        'id_resd',
-        'peso',
-        'data_hora',
-        'tipo_registro',
-    ];
+        protected $casts = [
+            'peso' => 'decimal:2',
+            'data_hora' => 'datetime',
+        ];
 
-    public $timestamps = false;
+        /**
+         * Define o relacionamento: Um Armazenamento PERTENCE A um Reseduo.
+         *
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function residuo()
+        {
+            return $this->belongsTo(Residuos::class, 'id_resd', 'id_resd');
+        }
 
-    protected $casts = [
-        'peso' => 'decimal:2',
-        'data_hora' => 'datetime',
-    ];
-
-    /**
-     * Define o relacionamento: Um Armazenamento PERTENCE A um Reseduo.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function residuo()
-    {
-        return $this->belongsTo(Reseduos::class, 'id_resd', 'id_resd');
+        public function subResiduo()
+        {
+            return $this->belongsTo(SubResiduos::class, 'id_sub_resd', 'id_sub_resd');
+        }
     }
-
-    public function subResiduo()
-    {
-        return $this->belongsTo(SubReseduos::class, 'id_sub_resd', 'id_sub_resd');
-    }
-
-}
+?>

@@ -4,11 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Filial;
-use App\Models\Reseduos;
 use App\Models\Veiculo;
 use App\Models\Residuos;
-use App\Models\Sub_reseduos;
-use App\Models\SubReseduos;
 use App\Models\SubResiduos;
 use App\Models\User;
 /**
@@ -26,8 +23,8 @@ class ResiduosCheFactory extends Factory
         return [
             'id_filial' => Filial::inRandomOrder()->value('id_fil'),
             'id_vec' => Veiculo::inRandomOrder()->value('id_vec'),
-            'id_resd' => Reseduos::inRandomOrder()->value('id_resd'), // corrigido
-            'id_sub_resd' => SubReseduos::inRandomOrder()->value('id_sub_resd'), // ajuste conforme nome da PK
+            'id_resd' => Residuos::inRandomOrder()->value('id_resd'), // corrigido
+            'id_sub_resd' => SubResiduos::inRandomOrder()->value('id_sub_resd'), // ajuste conforme nome da PK
             'id_responsavel' => User::inRandomOrder()->value('id'),
             'tipo_registro' => $this->faker->randomElement(['entrada', 'saida']),
             'peso' => $this->faker->randomFloat(2, 10, 1000),

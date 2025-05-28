@@ -1,27 +1,21 @@
 <?php
+
     namespace App\Models;
 
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
 
-    class Estado extends Model{
+    class SubResiduos extends Model{
         use HasFactory;
 
-        protected $table = 'estados';
+        protected $table = 'sub_residuos';
 
-        protected $primaryKey = 'id_est';
+        protected $primaryKey = 'id_sub_resd';
         public $incrementing = true;
         protected $keyType = 'int';
 
-        protected $fillable = [
-            'uf'
-        ];
+        protected $fillable = ['id_resd', 'nome'];
         
         public $timestamps = false;
-
-        protected $casts = [
-            'ativo' => 'boolean',
-            'preco' => 'decimal:2',
-        ];
     }
 ?>

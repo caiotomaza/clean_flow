@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_reseduos', function (Blueprint $table) {
+        Schema::create('sub_residuos', function (Blueprint $table) {
             $table->unsignedBigInteger('id_sub_resd')->primary();
             $table->unsignedBigInteger('id_resd')->nullable(); // Criação da chave estrangeira.
-            $table->foreign('id_resd')->references('id_resd')->on('reseduos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
+            $table->foreign('id_resd')->references('id_resd')->on('residuos')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->string('nome');
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_reseduos');
+        Schema::dropIfExists('sub_residuos');
     }
 };

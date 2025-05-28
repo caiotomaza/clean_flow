@@ -1,20 +1,19 @@
 <?php
+
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\DB\ArmazenamentoController;
-    use App\Http\Controllers\DB\ReseduosCheController;
-    use App\Http\Controllers\DB\ReseduosSaiController;
+    use App\Http\Controllers\DB\ResiduosCheController;
+    use App\Http\Controllers\DB\ResiduosSaiController;
     use App\Http\Controllers\Page\DashboardController;
     use App\Http\Controllers\Page\RegistrosController;
     use App\Http\Controllers\Page\CadastrosController;
     use App\Http\Controllers\Page\UsuariosController;
-    use App\Http\Controllers\page\RelatorioController;
+    use App\Http\Controllers\Page\RelatorioController;
     use App\Http\Controllers\DB\VeiculoController;
     use App\Http\Controllers\DB\FilialController;
     use App\Http\Controllers\DB\EmpresaController;
-    use App\Http\Controllers\DB\EnderecoController;
-    use App\Http\Controllers\DB\MunicipioController;
-    use App\Http\Controllers\DB\EstadoController;
-    use App\Models\SubReseduos;
+    use App\Models\SubResiduos;
+    
 
     require __DIR__ . '/auth.php';
 
@@ -32,11 +31,11 @@
 
         // Registros
         Route::get('/registros', [RegistrosController::class, 'page'])->name('registros.index');
-        Route::post('/residuos/store', [ReseduosCheController::class, 'store'])->name('residuos.store');
-        Route::post('/residuosSaida/store', [ReseduosSaiController::class, 'store'])->name('reseduos_sais.store');
+        Route::post('/residuos/store', [ResiduosCheController::class, 'store'])->name('residuos.store');
+        Route::post('/residuosSaida/store', [ResiduosSaiController::class, 'store'])->name('residuos_sais.store');
         Route::post('/armazenamentos', [ArmazenamentoController::class, 'store'])->name('armazenamentos.store');
         Route::get('/subtipos/{id}', function ($id) {
-            return SubReseduos::where('id_resd', $id)->get();
+            return SubResiduos::where('id_resd', $id)->get();
         });
 
         //Relatorios

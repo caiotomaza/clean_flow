@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reseduos_ches', function (Blueprint $table) {
+        Schema::create('residuos_ches', function (Blueprint $table) {
             $table->id('id_entrada'); 
             $table->unsignedBigInteger('id_vec')->nullable();
             $table->foreign('id_vec')->references('id_vec')->on('veiculos')->onDelete('set null');
@@ -23,10 +23,10 @@ return new class extends Migration
             $table->timestamp('data_hora');
         
             $table->unsignedBigInteger('id_resd')->nullable();
-            $table->foreign('id_resd')->references('id_resd')->on('reseduos')->onDelete('set null');
+            $table->foreign('id_resd')->references('id_resd')->on('residuos')->onDelete('set null');
         
             $table->unsignedBigInteger('id_sub_resd')->nullable();
-            $table->foreign('id_sub_resd')->references('id_sub_resd')->on('sub_reseduos')->onDelete('set null');
+            $table->foreign('id_sub_resd')->references('id_sub_resd')->on('sub_residuos')->onDelete('set null');
         
             $table->unsignedBigInteger('id_responsavel')->nullable();
             $table->foreign('id_responsavel')->references('id')->on('users')->onDelete('set null');
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reseduos_ches');
+        Schema::dropIfExists('residuos_ches');
     }
 };

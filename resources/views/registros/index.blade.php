@@ -275,7 +275,7 @@
 </div>
 <div class="popup-container" id="popupResiduosSaida">
     <div class="popup">
-        <form action="{{ route('reseduos_sais.store') }}" method="POST">
+        <form action="{{ route('residuos_sais.store') }}" method="POST">
           @csrf
 
           <div>

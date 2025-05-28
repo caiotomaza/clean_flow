@@ -1,27 +1,26 @@
 <?php
+
     namespace App\Models;
 
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
 
-    class Estado extends Model{
+    class Residuos extends Model{
         use HasFactory;
 
-        protected $table = 'estados';
+        protected $table = 'residuos';
 
-        protected $primaryKey = 'id_est';
+        protected $primaryKey = 'id_resd';
         public $incrementing = true;
         protected $keyType = 'int';
 
-        protected $fillable = [
-            'uf'
-        ];
+        protected $fillable = ['nome'];
         
         public $timestamps = false;
 
-        protected $casts = [
-            'ativo' => 'boolean',
-            'preco' => 'decimal:2',
-        ];
+        public function armazenamentos()
+        {
+            return $this->hasMany(Armazenamento::class);
+        }
     }
 ?>

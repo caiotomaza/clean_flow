@@ -1,42 +1,41 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
 
-class ResiduosSai extends Model
-{
+    class ResiduosSai extends Model{
+        use HasFactory;
+        
+        protected $table = 'residuos_sais';
 
-    use HasFactory;
+        protected $primaryKey = 'id_saida';
+        public $incrementing = true; // Indica se a chave primária é auto-incrementante
+        protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
+
+        protected $fillable = ['id_saida','id_filial', 'id_arm', 'id_vec', 'data_hora'];
+
+        public $timestamps = false;
     
-    protected $table = 'reseduos_sais';
+        protected $casts = [
+            'ativo' => 'boolean',
+            'preco' => 'decimal:2',
+        ];
 
-    protected $primaryKey = 'id_saida';
-    public $incrementing = true; // Indica se a chave primária é auto-incrementante
-    protected $keyType = 'int'; // Tipo da chave primária (opcional - padrão é 'int')
+        public function armazenamento()
+        {
+            return $this->belongsTo(Armazenamento::class, 'id_arm', 'id_arm');
+        }
 
-    protected $fillable = ['id_saida','id_filial', 'id_arm', 'id_vec', 'data_hora'];
+        public function veiculo()
+        {
+            return $this->belongsTo(Veiculo::class, 'id_vec', 'id_vec');
+        }
 
-    public $timestamps = false;
- 
-    protected $casts = [
-        'ativo' => 'boolean',
-        'preco' => 'decimal:2',
-    ];
-
-    public function armazenamento()
-    {
-        return $this->belongsTo(Armazenamento::class, 'id_arm', 'id_arm');
+        public function filial()
+        {
+            return $this->belongsTo(Filial::class, 'id_filial', 'id_fil');
+        }
     }
-
-    public function veiculo()
-    {
-        return $this->belongsTo(Veiculo::class, 'id_vec', 'id_vec');
-    }
-
-    public function filial()
-    {
-        return $this->belongsTo(Filial::class, 'id_filial', 'id_fil');
-    }
-}
+?>
