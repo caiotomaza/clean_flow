@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\reseduosSai;
+use App\Models\ResiduosSai;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ReseduosSaisSeeder extends Seeder
+class ResiduosSaisSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        reseduosSai::factory()->count(20)->create();
+        ResiduosSai::factory()->count(20)->create();
     }
 }

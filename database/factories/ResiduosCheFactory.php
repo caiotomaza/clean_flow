@@ -12,9 +12,9 @@ use App\Models\SubReseduos;
 use App\Models\SubResiduos;
 use App\Models\User;
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reseduosche>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ResiduosChe>
  */
-class ReseduoscheFactory extends Factory
+class ResiduosCheFactory extends Factory
 {
     /**
      * Define the model's default state.

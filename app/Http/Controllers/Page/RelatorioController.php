@@ -4,14 +4,10 @@ namespace App\Http\Controllers\page;
 
 use App\Http\Controllers\Controller;
 use App\Models\Armazenamento;
-use App\Models\Reseduos_che; // Supondo que este é o nome correto do Model
-use App\Models\reseduos_sai; // Supondo que este é o nome correto do Model
-// Se 'Reseduosche' e 'reseduosSai' são os corretos, ajuste os uses acima.
-// Assumirei que Reseduosche e reseduosSai são os corretos conforme seu código original.
-use App\Models\Reseduosche;
-use App\Models\reseduosSai;
+use App\Models\ResiduosChe;
+use App\Models\ResiduosSai;
 use Illuminate\Http\Request;
-use PDF; // Verifique se você tem o facade correto: use Barryvdh\DomPDF\Facade\Pdf; ou similar
+use PDF;
 use Carbon\Carbon;
 
 class RelatorioController extends Controller
@@ -34,23 +30,23 @@ class RelatorioController extends Controller
         $referencia = Carbon::today(); // Mantendo a lógica original por enquanto
 
         // Dados Diários
-        $entradasDiarias = Reseduosche::whereDate('data_hora', $referencia)->get();
+        $entradasDiarias = ResiduosChe::whereDate('data_hora', $referencia)->get();
         $armazenamentosDiarios = Armazenamento::whereDate('data_hora', $referencia)->get();
-        $saidasDiarias = reseduosSai::whereDate('data_hora', $referencia)->get();
+        $saidasDiarias = ResiduosSai::whereDate('data_hora', $referencia)->get();
 
         // Dados Semanais
         $semanaInicio = $referencia->copy()->startOfWeek();
         $semanaFim = $referencia->copy()->endOfWeek();
-        $entradasSemanais = Reseduosche::whereBetween('data_hora', [$semanaInicio, $semanaFim])->get();
+        $entradasSemanais = ResiduosChe::whereBetween('data_hora', [$semanaInicio, $semanaFim])->get();
         $armazenamentosSemanais = Armazenamento::whereBetween('data_hora', [$semanaInicio, $semanaFim])->get();
-        $saidasSemanais = reseduosSai::whereBetween('data_hora', [$semanaInicio, $semanaFim])->get();
+        $saidasSemanais = ResiduosSai::whereBetween('data_hora', [$semanaInicio, $semanaFim])->get();
 
         // Dados Mensais
         $mesInicio = $referencia->copy()->startOfMonth();
         $mesFim = $referencia->copy()->endOfMonth();
-        $entradasMensais = Reseduosche::whereBetween('data_hora', [$mesInicio, $mesFim])->get();
+        $entradasMensais = ResiduosChe::whereBetween('data_hora', [$mesInicio, $mesFim])->get();
         $armazenamentosMensais = Armazenamento::whereBetween('data_hora', [$mesInicio, $mesFim])->get();
-        $saidasMensais = reseduosSai::whereBetween('data_hora', [$mesInicio, $mesFim])->get();
+        $saidasMensais = ResiduosSai::whereBetween('data_hora', [$mesInicio, $mesFim])->get();
 
         $pdf = PDF::loadView('relatorios.completo', compact(
             'entradasDiarias', 'armazenamentosDiarios', 'saidasDiarias',
@@ -75,9 +71,9 @@ class RelatorioController extends Controller
             // return redirect()->back()->withErrors(['data_diario' => 'Data inválida.']);
         }
 
-        $entradas = Reseduosche::whereDate('data_hora', $dia)->get();
+        $entradas = ResiduosChe::whereDate('data_hora', $dia)->get();
         $armazenamentos = Armazenamento::whereDate('data_hora', $dia)->get();
-        $saidas = reseduosSai::whereDate('data_hora', $dia)->get();
+        $saidas = ResiduosSai::whereDate('data_hora', $dia)->get();
 
         $pdf = PDF::loadView('relatorios.simples', [
             'titulo' => 'Diário - ' . $dia->format('d/m/Y'),
@@ -102,9 +98,9 @@ class RelatorioController extends Controller
         $inicioSemana = $diaDeReferencia->copy()->startOfWeek(Carbon::MONDAY); // Considera segunda como início da semana
         $fimSemana = $diaDeReferencia->copy()->endOfWeek(Carbon::SUNDAY);   // Considera domingo como fim da semana
 
-        $entradas = Reseduosche::whereBetween('data_hora', [$inicioSemana, $fimSemana])->get();
+        $entradas = ResiduosChe::whereBetween('data_hora', [$inicioSemana, $fimSemana])->get();
         $armazenamentos = Armazenamento::whereBetween('data_hora', [$inicioSemana, $fimSemana])->get();
-        $saidas = reseduosSai::whereBetween('data_hora', [$inicioSemana, $fimSemana])->get();
+        $saidas = ResiduosSai::whereBetween('data_hora', [$inicioSemana, $fimSemana])->get();
         
         $titulo = sprintf(
             'Semanal (Semana de %s a %s)',
@@ -137,9 +133,9 @@ class RelatorioController extends Controller
         $inicioMes = $dataDeReferencia->copy()->startOfMonth();
         $fimMes = $dataDeReferencia->copy()->endOfMonth();
 
-        $entradas = Reseduosche::whereBetween('data_hora', [$inicioMes, $fimMes])->get();
+        $entradas = ResiduosChe::whereBetween('data_hora', [$inicioMes, $fimMes])->get();
         $armazenamentos = Armazenamento::whereBetween('data_hora', [$inicioMes, $fimMes])->get();
-        $saidas = reseduosSai::whereBetween('data_hora', [$inicioMes, $fimMes])->get();
+        $saidas = ResiduosSai::whereBetween('data_hora', [$inicioMes, $fimMes])->get();
         
         $titulo = 'Mensal - ' . $inicioMes->format('m/Y');
 

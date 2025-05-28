@@ -54,11 +54,15 @@
             <table class="w-full text-left min-w-full">
                 <thead class="bg-slate-200 text-slate-600 uppercase text-xs sm:text-sm leading-normal">
                     <tr>
-                        <th class="py-3 px-4 sm:px-6">Movimentação</th>
-                        <th class="py-3 px-4 sm:px-6">Responsável</th>
-                        <th class="py-3 px-4 sm:px-6">Data</th>
-                        <th class="py-3 px-4 sm:px-6">Local</th>
-                        <th class="py-3 px-4 sm:px-6 text-center">Ações</th>
+                        <th class="py-3 px-4 sm:px-6">Nº de registro</th>
+                        <th>Tipo de empresa</th>
+                        <th>Nome fantasia</th>
+                        <th class="py-3 px-4 sm:px-6">Razão social</th>
+                        <th class="py-3 px-4 sm:px-6">CNPJ</th>
+                        <th>Inscrição estadual</th>
+                        <th class="py-3 px-4 sm:px-6">Inscrição municipal</th>
+                        <th class="py-3 px-4 sm:px-6 text-center">E-mail</th>
+                        <th>Telefone</th>
                     </tr>
                 </thead>
                 <tbody id="tabela-corpo" class="text-slate-700 text-sm font-light">
