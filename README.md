@@ -104,3 +104,8 @@ docker-compose down
 ```bash
 php artisan migrate:fresh --seed
 ```
+
+### Executa os teste automaticos
+```bash
+php artisan test
+``
