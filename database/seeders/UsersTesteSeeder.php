@@ -15,7 +15,7 @@ class UsersTesteSeeder extends Seeder
             'name' => 'Teste1',
             'email' => 'teste@unifapce.com.br', 
             'matricula' => '9999', 
-            'status' => 'Ativo', 
+            'status' => 'ativo', 
             'password' => Hash::make('Teste@123'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10), // gera token aleatório

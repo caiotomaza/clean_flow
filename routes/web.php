@@ -51,9 +51,6 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\VerificaStatusAtivo:
     Route::post('/filial/store', [FilialController::class, 'store'])->name('filial.store');
     Route::post('/empresa/store', [EmpresaController::class, 'store'])->name('empresa.store');
 
-    Route::resource('municipios', MunicipioController::class);
-
-
     // Usuários
     Route::get('/usuarios', [UsuariosController::class, 'page'])->name('usuarios.index');
     Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');
