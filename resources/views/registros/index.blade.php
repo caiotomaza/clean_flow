@@ -59,19 +59,19 @@
         <tbody class="bg-white">
           @foreach ($entradas as $entrada)
             <tr class="border-t">
-              <td class="px-4 py-2">{{ $entrada->id_entrada }}</td>
-              <td class="px-4 py-2">
-                @if($entrada->filial)
-                  {{ $entrada->filial->nome }}
-                @else
-                  <span class="text-red-600">Sem filial</span>
-                @endif
-              </td>
-              <td class="px-4 py-2">{{ $entrada->responsavel?->name ?? 'N/A' }}</td>
-              <td class="px-4 py-2">{{ $entrada->residuo?->nome ?? 'N/A' }}</td>
-              <td class="px-4 py-2">{{ $entrada->subresiduo?->nome ?? 'N/A' }}</td>
-              <td class="px-4 py-2">{{ $entrada->peso }}</td>
-              <td class="px-4 py-2">Entrada de resíduos</td>
+                <td class="px-4 py-2">{{ $entrada->id_entrada }}</td>
+                <td class="px-4 py-2">
+                  @if($entrada->filial)
+                    {{ $entrada->filial->nome }}
+                  @else
+                    <span class="text-red-600">Sem filial</span>
+                  @endif
+                </td>
+                <td class="px-4 py-2">{{ $entrada->responsavel?->name ?? 'N/A' }}</td>
+                <td class="px-4 py-2">{{ $entrada->residuo?->nome ?? 'N/A' }}</td>
+                <td class="px-4 py-2">{{ $entrada->subresiduo?->nome ?? 'N/A' }}</td>
+                <td class="px-4 py-2">{{ $entrada->peso }}</td>
+                <td class="px-4 py-2">Entrada de resíduos</td>
             </tr>
           @endforeach
         </tbody>
