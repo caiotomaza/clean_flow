@@ -44,7 +44,7 @@
 
             $reseduo->save();
         
-            return redirect()->back()->with('success', 'Resíduo registrado com sucesso.');
+            return redirect()->route('registros.index')->with('success', 'Ação realizada com sucesso!');
         }
     }
 ?>

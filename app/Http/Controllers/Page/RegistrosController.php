@@ -27,7 +27,7 @@
         $armazenamentos = Armazenamento::with(['residuo', 'subresiduo'])->orderBy('id_arm')->get();
         $saidas = ResiduosSai::with(['filial', 'armazenamento', 'veiculo'])->orderBy('id_saida')->get();
 
-          return view("registros.index", compact('entradas', 'armazenamentos', 'saidas', 'filiais', 'placas', 'residuos', 'subresiduos', 'users'));
+        return view("registros.index", compact('entradas', 'armazenamentos', 'saidas', 'filiais', 'placas', 'residuos', 'subresiduos', 'users'));
       }
   }
 ?>

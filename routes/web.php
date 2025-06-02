@@ -14,7 +14,6 @@
     use App\Http\Controllers\DB\EmpresaController;
     use App\Models\SubResiduos;
     
-
     require __DIR__ . '/auth.php';
 
     // Welcome

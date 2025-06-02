@@ -32,7 +32,7 @@
 
             $armazenamento->save();
         
-            return redirect()->back()->with('success', 'Resíduo Armazenado com sucesso.');
+            return redirect()->route('registros.index')->with('success', 'Ação realizada com sucesso!');
         }
     }
 ?>

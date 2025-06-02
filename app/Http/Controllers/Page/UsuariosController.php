@@ -28,7 +28,7 @@
 
             User::create($validated);
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado com sucesso!');
+            return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado com sucesso!');
         }
 
         public function update(Request $request, $id)

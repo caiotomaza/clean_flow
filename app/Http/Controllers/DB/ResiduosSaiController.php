@@ -39,7 +39,7 @@
 
             $saida->save();
 
-            return redirect()->back()->with('success', 'Saída de resíduo registrada com sucesso.');
+            return redirect()->route('registros.index')->with('success', 'Ação realizada com sucesso!');
         }
     }
 ?>
