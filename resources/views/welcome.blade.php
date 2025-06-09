@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Clean Flow - Solução completa para gerenciamento, triagem e separação de resíduos sólidos" />
-    <link rel="stylesheet" href="{{ asset('public/css/welcome/style.css') }}">
-    <script src="{{ asset('public/js/welcome/script.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/welcome/style.css') }}">
+    <script src="{{ asset('js/welcome/script.js') }}"></script>
   </head>
   <body>
     <!-- Header -->
