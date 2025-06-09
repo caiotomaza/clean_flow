@@ -43,6 +43,7 @@ services:
       - cleanflow
     volumes:
       - cleanflow_mysql_data:/var/lib/mysql
+      - ./mysql-conf/my.cnf:/etc/mysql/conf.d/my.cnf:ro
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
