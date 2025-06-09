@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem vindo ao Clean Flow</title>
     <link rel="stylesheet" href="{{ asset('css/welcome/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 </head>
 <body>
     <div id="app">
@@ -21,7 +22,7 @@
             <section id="inicio" class="hero">
                 <h2>Bem-vindo ao Clean Flow</h2>
                 <p>Uma solução moderna para gestão de residuos solidos.</p>
-                <button class="cta-button">Começar agora</button>
+                <a href="{{route('login')}}" class="cta-button">Começar agora</a>
             </section>
 
             <section id="recursos" class="features">

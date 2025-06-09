@@ -22,5 +22,10 @@
         {
             return $this->hasMany(Armazenamento::class);
         }
+
+        public function subResiduos()
+        {
+            return $this->hasMany(SubResiduos::class, 'id_resd', 'id_resd');
+        }
     }
 ?>

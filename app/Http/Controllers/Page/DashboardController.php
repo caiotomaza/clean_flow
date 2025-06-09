@@ -3,7 +3,8 @@
     namespace App\Http\Controllers\Page;
 
     use App\Http\Controllers\Controller;
-    use Illuminate\Http\Request;
+use App\Models\ResiduosChe;
+use Illuminate\Http\Request;
     use Illuminate\Support\Carbon;
     use Illuminate\Support\Facades\DB;
 
@@ -66,7 +67,13 @@
 
             $veiculosAtivos = DB::table('veiculos')->count();
 
-            return view("dashboard.index", compact('dadosche', 'dadosSai', 'dadosArm', 'pesosEntrada', 'veiculosAtivos'));
+            $dadosGrafico = ResiduosChe::select('residuos.nome as categoria', DB::raw('COUNT(*) as total'))
+            ->join('residuos', 'residuos.id_resd', '=', 'residuos_ches.id_resd')
+            ->groupBy('residuos.nome')
+            ->orderByDesc('total')
+            ->get();
+
+            return view("dashboard.index", compact('dadosche', 'dadosSai', 'dadosArm', 'pesosEntrada', 'veiculosAtivos', 'dadosGrafico'));
         }
 
         public function page()

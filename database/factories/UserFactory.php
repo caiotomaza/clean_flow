@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'status' => $this->faker->randomElement(['ativo', 'inativo']),
             'email_verified_at' => now(),
-            'password' => bcrypt('senhaPadrao'),
+            'password' => bcrypt('teste1234'),
             'remember_token' => Str::random(10),
         ];
     }
