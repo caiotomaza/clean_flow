@@ -51,7 +51,7 @@ REDIS_PORT=6379
 
 3. **Subir os containers do projeto**  
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 4. **Acessar o container do back-end**  
