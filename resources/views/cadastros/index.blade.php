@@ -193,8 +193,8 @@
                     <input type="hidden" name="tipo_registro" value="filial">
 
                     <div>
-                        <label for="id_filial_input" class="block text-sm font-medium text-gray-700">Filial:</label>
-                        <select name="id_filial_input" id="id_filial_input" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <label for="id_emp" class="block text-sm font-medium text-gray-700">Empresa:</label>
+                        <select name="id_emp" id="id_emp" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                             <option value="">Selecione a empresa que pertence</option>
                             @foreach($empresas as $emp)
                                 <option value="{{ $emp->id_emp }}">{{ $emp->nome_fans }}</option>
@@ -203,24 +203,25 @@
                     </div>
 
                     <div>
-                        <label for="nome_filial" class="block text-sm font-medium text-gray-700">Nome:</label>
-                        <input type="text" id="nome_filial" name="nome_filial" placeholder="Unidade Juazeiso do Norte" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <label for="nome" class="block text-sm font-medium text-gray-700">Nome:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Unidade Juazeiro do Norte" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
+                    {{-- Endereço da filial (será usado para criar a entidade endereco) --}}
                     <div>
                         <label for="log_filial" class="block text-sm font-medium text-gray-700">Logradouro:</label>
-                        <input type="text" id="log_filial" name="log_filial" placeholder="Av. Padre Cicero" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="text" id="log_filial" name="log_filial" placeholder="Av. Padre Cícero" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
-                        <label for="numero_filial" class="block text-sm font-medium text-gray-700">Numero:</label>
+                        <label for="numero_filial" class="block text-sm font-medium text-gray-700">Número:</label>
                         <input type="number" id="numero_filial" name="numero_filial" placeholder="100" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
-                        <label for="mun_filial" class="block text-sm font-medium text-gray-700">Municipio:</label>
+                        <label for="mun_filial" class="block text-sm font-medium text-gray-700">Município:</label>
                         <select name="mun_filial" id="mun_filial" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
-                            <option value="">Selecione o municipio</option>
+                            <option value="">Selecione o município</option>
                             @foreach($municipios as $municipio)
                                 <option value="{{ $municipio->id_mun }}">{{ $municipio->nome }}</option>
                             @endforeach
@@ -244,6 +245,7 @@
                 </form>
             </div>
         </div>
+
 
         {{-- Popup de cadastro de empresa --}}
         <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden" id="PopupEmpresa">

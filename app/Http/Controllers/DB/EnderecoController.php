@@ -11,21 +11,21 @@
         //Cadastrar
         public function store(Request $request)
         {
-            // Validação
             $validated = $request->validate([
-                'id_mun' => 'nullable|numeric|exists:municipios,id_mun', 
-                'logradouro' => 'nullable|string|exists:endereco,id_log', 
-                'numero'  => 'nullable|numeric|exists:endereco,id_log',
+                'id_mun' => 'required|numeric|exists:municipios,id_mun',
+                'id_est' => 'required|numeric|exists:estado,id_est',
+                'logradouro' => 'required|string',
+                'numero'  => 'required|numeric',
             ]);
 
-            // Criar
             $endereco = new Endereco();
             $endereco->id_mun = $validated['id_mun'];
+            $endereco->id_est = $validated['id_est'];
             $endereco->logradouro = $validated['logradouro'];
             $endereco->numero = $validated['numero'];
             $endereco->save();
 
-            return redirect()->back()->with('success', 'Endereço cadastrada com sucesso.');
+            return redirect()->back()->with('success', 'Endereço cadastrado com sucesso.');
         }
 
         //Atualizar
