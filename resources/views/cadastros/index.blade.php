@@ -253,11 +253,11 @@
                 <form action="{{ route('empresa.store') }}" method="POST" id="FormEmpresa" class="space-y-4">
                     @csrf
                     <h2 class="text-xl font-bold text-gray-800">Cadastrar uma empresa</h2>
-                    <input type="hidden" name="tipo_registro" value="empresa">
+                    <input type="hidden" name="id_temp" value="empresa">
 
                     <div>
                         <label for="tipo_empresa" class="block text-sm font-medium text-gray-700">Tipo de empresa:</label>
-                        <select name="tipo_empresa" id="tipo_empresa" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <select name="id_temp" id="tipo_empresa" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                             <option value="">Selecione o tipo de empresa</option>
                             @foreach($tipo_empresas as $tipo)
                                 <option value="{{ $tipo->id_temp }}">{{ $tipo->nome }}</option>
@@ -267,37 +267,37 @@
 
                     <div>
                         <label for="nome_empresa" class="block text-sm font-medium text-gray-700">Nome fantasia:</label>
-                        <input type="text" id="nome_empresa" name="nome_empresa" placeholder="Vértice Soluções" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="text" id="nome_empresa" name="nome_fans" placeholder="Vértice Soluções" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
                         <label for="razao_empresa" class="block text-sm font-medium text-gray-700">Razão social:</label>
-                        <input type="text" id="razao_empresa" name="razao_empresa" placeholder="Alpha Inovação Digital Ltda." required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="text" id="razao_empresa" name="razao_social" placeholder="Alpha Inovação Digital Ltda." required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
                         <label for="cnpj_empresa" class="block text-sm font-medium text-gray-700">CNPJ:</label>
-                        <input type="number" id="cnpj_empresa" name="cnpj_empresa" placeholder="12.345.678/0001-99" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="number" id="cnpj_empresa" name="cnpj" placeholder="12.345.678/0001-99" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
                         <label for="ie_empresa" class="block text-sm font-medium text-gray-700">IE:</label>
-                        <input type="number" id="ie_empresa" name="ie_empresa" placeholder="234567895467" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="number" id="ie_empresa" name="ie" placeholder="234567895467" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
                         <label for="im_empresa" class="block text-sm font-medium text-gray-700">IM:</label>
-                        <input type="number" id="im_empresa" name="im_empresa" placeholder="234567895467" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="number" id="im_empresa" name="im" placeholder="234567895467" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
                         <label for="email_empresa" class="block text-sm font-medium text-gray-700">E-mail:</label>
-                        <input type="email" id="email_empresa" name="email_empresa" placeholder="contato@empresa.com.br" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="email" id="email_empresa" name="email" placeholder="contato@empresa.com.br" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div>
                         <label for="tel_empresa" class="block text-sm font-medium text-gray-700">Telefone:</label>
-                        <input type="number" id="tel_empresa" name="tel_empresa" placeholder="5588982332134" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                        <input type="number" id="tel_empresa" name="telefone" placeholder="5588982332134" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
                     </div>
 
                     <div class="flex justify-end space-x-2 pt-4">
