@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('enderecos', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_log')->primary();
+            $table->id('id_log');
             $table->unsignedBigInteger('id_mun')->nullable(); // Criação da chave estrangeira.
             $table->foreign('id_mun')->references('id_mun')->on('municipios')->onDelete('set null'); // Criação da ligação da chave estrangeira.
             $table->string('logradouro');
             $table->bigInteger('numero');
+            $table->unsignedBigInteger('id_est')->nullable();
+            $table->foreign('id_est')->references('id_est')->on('estados')->onDelete('set null');
             $table->timestamps();
         });
     }

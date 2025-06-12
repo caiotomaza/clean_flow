@@ -87,7 +87,7 @@
         </div>
 
         {{-- Relatórios Semanais --}}
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
+        {{-- <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
             <div class="flex items-center space-x-4 mb-6">
                 <div class="p-3 rounded-full bg-indigo-100">
                     <img src="https://cdn-icons-png.flaticon.com/512/3936/3936996.png" class="w-8 h-8" alt="Relatórios">
@@ -106,7 +106,7 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
 
         {{-- Peso Entradas/Saídas --}}
         <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
@@ -142,93 +142,91 @@
                 <p class="text-sm text-slate-500 uppercase tracking-wider mt-1">Veiculos Cadastrados</p>
             </div>
             <div class="grid grid-cols-5 gap-2 text-center border-t border-slate-200 pt-4">
-                @foreach (['Seg'=>9, 'Ter'=>4, 'Qua'=>10, 'Qui'=>5, 'Sex'=>11] as $dia => $qtd)
+                {{-- @foreach (['Seg'=>9, 'Ter'=>4, 'Qua'=>10, 'Qui'=>5, 'Sex'=>11] as $dia => $qtd)
                     <div>
                         <h3 class="text-md font-bold text-slate-700">{{ $qtd }}</h3>
                         <p class="text-xs text-slate-500 uppercase">{{ $dia }}</p>
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
 
         {{-- Gráfico de Categorias --}}
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out col-span-full xl:col-span-2">
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
             <div class="flex items-center space-x-4 mb-6">
                  <div class="p-3 rounded-full bg-purple-100">
                     <img src="https://cdn-icons-png.flaticon.com/512/4227/4227865.png" class="w-8 h-8" alt="Categorias">
                 </div>
-                <h1 class="text-xl font-semibold text-slate-700">Categorias mais vistas</h1>
+                <h1 class="text-xl font-semibold text-slate-700">Resíduos Mais Registrados</h1>
             </div>
             <div class="flex flex-col md:flex-row md:space-x-8 items-center">
                 <div class="max-w-xs mx-auto mb-6 md:mb-0 md:mx-0 flex-shrink-0">
                     <canvas id="graficoRosca"></canvas> {{-- Removido max-w-xs para permitir que o container controle --}}
                 </div>
                 <ul class="text-sm space-y-3 text-slate-600 flex-grow">
-                    <li><span class="inline-block w-3 h-3 bg-blue-500 rounded-full mr-2 align-middle"></span> 28% Papel/Papelão</li>
-                    <li><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 align-middle"></span> 23% Plásticos</li>
-                    <li><span class="inline-block w-3 h-3 bg-yellow-500 rounded-full mr-2 align-middle"></span> 19% Metais</li>
-                    <li><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2 align-middle"></span> 14% Madeiras</li>
-                    <li><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2 align-middle"></span> 9% Vidros</li>
-                    <li><span class="inline-block w-3 h-3 bg-gray-500 rounded-full mr-2 align-middle"></span> 5% Lixo Orgânico</li>
-                    <li><span class="inline-block w-3 h-3 bg-pink-500 rounded-full mr-2 align-middle"></span> 2% Pilhas e baterias</li>
+                    @foreach ($dadosGrafico as $index => $dado)
+                        @php
+                            $colors = ['blue-500', 'green-500', 'yellow-500', 'purple-500', 'red-500', 'gray-500', 'pink-500'];
+                            $cor = $colors[$index % count($colors)];
+                        @endphp
+                        <li>
+                            <span class="inline-block w-3 h-3 bg-{{ $cor }} rounded-full mr-2 align-middle"></span>
+                            {{ round(($dado->total / $dadosGrafico->sum('total')) * 100) }}% {{ $dado->categoria }}
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="text-center mt-10">
+    {{-- <div class="text-center mt-10">
         <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition-all duration-300 ease-in-out transform hover:-translate-y-0.5">
             Ver Mais
         </button>
-    </div>
+    </div> --}}
 </main>
 <script>
+    const categorias = @json($dadosGrafico->pluck('categoria'));
+    const totais = @json($dadosGrafico->pluck('total'));
+
     const ctx = document.getElementById('graficoRosca').getContext('2d');
 
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: [
-                'Papel/Papelão',
-                'Plásticos',
-                'Metais',
-                'Madeiras',
-                'Vidros',
-                'Lixo Orgânico',
-                'Pilhas e baterias'
-            ],
+            labels: categorias,
             datasets: [{
-                data: [28, 23, 19, 14, 9, 5, 2],
+                data: totais,
                 backgroundColor: [
-                    '#3B82F6', // azul (Tailwind blue-500)
-                    '#22C55E', // verde (Tailwind green-500)
-                    '#F59E0B', // amarelo (Tailwind amber-500 or yellow-500)
-                    '#A855F7', // roxo (Tailwind purple-500)
-                    '#EF4444', // vermelho (Tailwind red-500)
-                    '#6B7280', // cinza (Tailwind gray-500)
-                    '#EC4899'  // rosa (Tailwind pink-500)
+                    '#3B82F6',
+                    '#22C55E',
+                    '#F59E0B',
+                    '#A855F7',
+                    '#EF4444',
+                    '#6B7280',
+                    '#EC4899'
                 ],
-                borderColor: '#FFFFFF', // Adiciona uma borda branca entre os segmentos
+                borderColor: '#FFFFFF',
                 borderWidth: 2
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Permite que o gráfico se ajuste melhor ao container
+            maintainAspectRatio: false,
             cutout: '70%',
             plugins: {
                 legend: {
-                    display: false // A legenda personalizada já está no HTML
+                    display: false
                 },
                 tooltip: {
                     backgroundColor: '#FFF',
-                    titleColor: '#334155', // slate-700
+                    titleColor: '#334155',
                     bodyColor: '#334155',
-                    borderColor: '#E2E8F0', // slate-200
+                    borderColor: '#E2E8F0',
                     borderWidth: 1,
                     padding: 10,
                     cornerRadius: 6,
-                    displayColors: true, // Mostra a caixinha de cor no tooltip
+                    displayColors: true,
                     boxPadding: 3
                 }
             }

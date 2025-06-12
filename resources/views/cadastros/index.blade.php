@@ -153,180 +153,159 @@
 
     {{---- Popup's -----}}
 
-    {{-- Popup de cadastro de veiculo --}}
-    <div class="popup-container" id="PopupVeiculo">
-        <div class="popup">
-            <form action="{{ route('veiculo.store') }}" method="POST" id="FormVeiculo">
-                @csrf
-                <h2>Cadastrar um veículo</h2>
-                <input type="hidden" name="tipo_registro" value="veiculo">
+        {{-- Popup de cadastro de veiculo --}}
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden" id="PopupVeiculo">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <form action="{{ route('veiculo.store') }}" method="POST" id="FormVeiculo" class="space-y-4">
+                    @csrf
+                    <h2 class="text-xl font-bold text-gray-800">Cadastrar um veículo</h2>
+                    <input type="hidden" name="tipo_registro" value="veiculo">
 
-                {{-- Selecionar a filial que o veiculo pertence --}}
-                <div class="form-group">
-                    <label for="id_filial_input">Filial: </label> 
-
-                    <select name="id_filial_input" id="id_filial_input" required> 
-                        <option value="">Selecione uma filial</option>
+                    <div>
+                        <label for="id_filial_input" class="block text-sm font-medium text-gray-700">Filial:</label>
+                        <select name="id_filial_input" id="id_filial_input" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Selecione uma filial</option>
                             @foreach($filiais as $fill)
                                 <option value="{{ $fill->id_fil }}">{{ $fill->nome }}</option>
                             @endforeach
-                    </select>
-                </div>
-                
-                {{-- Diga a placa do veiculo --}}
-                <div class="form-group">
-                    <label for="placa_veiculo">Placa: </label>
-                    <input type="text" id="placa_veiculo" name="placa_veiculo" placeholder="BRA2E19" required>
-                </div>
+                        </select>
+                    </div>
 
-                {{-- Botões para ações do popup --}}
-                <div class="actions">
-                    <button  type="button" class="submit-btn" onclick="FecharPopupVeiculo()">Cancelar</button>
-                    <button type="submit" class="submit-btn">Concluir</button>
-                </div>
-            </form>
+                    <div>
+                        <label for="placa_veiculo" class="block text-sm font-medium text-gray-700">Placa:</label>
+                        <input type="text" id="placa_veiculo" name="placa_veiculo" placeholder="BRA2E19" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
+
+                    <div class="flex justify-end space-x-2 pt-4">
+                        <button type="button" onclick="FecharPopupVeiculo()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Concluir</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    {{-- Popup de cadastro de filial --}}
-    <div class="popup-container" id="PopupFilial">
-        <div class="popup">
-            <form action="{{ route('filial.store') }}" method="POST" id="FormFilial">
-                @csrf
-                <h2>Cadastrar uma filial</h2>
-                <input type="hidden" name="tipo_registro" value="filial">
+        {{-- Popup de cadastro de filial --}}
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden" id="PopupFilial">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <form action="{{ route('filial.store') }}" method="POST" id="FormFilial" class="space-y-4">
+                    @csrf
+                    <h2 class="text-xl font-bold text-gray-800">Cadastrar uma filial</h2>
+                    <input type="hidden" name="tipo_registro" value="filial">
 
-                {{-- Selecionar a filial que o veiculo pertence --}}
-                <div class="form-group">
-                    <label for="id_filial_input">Filial: </label> 
-
-                    <select name="id_filial_input" id="id_filial_input" required> 
-                        <option value="">Selecione a empresa que pertence</option>
+                    <div>
+                        <label for="id_emp" class="block text-sm font-medium text-gray-700">Empresa:</label>
+                        <select name="id_emp" id="id_emp" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Selecione a empresa que pertence</option>
                             @foreach($empresas as $emp)
                                 <option value="{{ $emp->id_emp }}">{{ $emp->nome_fans }}</option>
                             @endforeach
-                    </select>
-                </div>
-                
-                {{-- Nome --}}
-                <div class="form-group">
-                    <label for="nome_filial">Nome: </label>
-                    <input type="text" id="nome_filial" name="nome_filial" placeholder="Unidade Juazeiso do Norte" required>
-                </div>
+                        </select>
+                    </div>
 
-                {{-- Logradouro --}}
-                <div class="form-group">
-                    <label for="log_filial">Logradouro: </label>
-                    <input type="text" id="log_filial" name="log_filial" placeholder="Av. Padre Cicero" required>
-                </div>
+                    <div>
+                        <label for="nome" class="block text-sm font-medium text-gray-700">Nome:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Unidade Juazeiro do Norte" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
+                    {{-- Endereço da filial (será usado para criar a entidade endereco) --}}
+                    <div>
+                        <label for="log_filial" class="block text-sm font-medium text-gray-700">Logradouro:</label>
+                        <input type="text" id="log_filial" name="log_filial" placeholder="Av. Padre Cícero" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- Numero --}}
-                <div class="form-group">
-                    <label for="numero_filial">Numero: </label>
-                    <input type="number" id="numero_filial" name="numero_filial" placeholder="100" required>
-                </div>
+                    <div>
+                        <label for="numero_filial" class="block text-sm font-medium text-gray-700">Número:</label>
+                        <input type="number" id="numero_filial" name="numero_filial" placeholder="100" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- Municipio --}}
-                <div class="form-group">
-                    <label for="mun_filial">Municipio: </label>
-
-                    <select name="mun_filial" id="mun_filial" required> 
-                        <option value="">Selecione o municipio</option>
+                    <div>
+                        <label for="mun_filial" class="block text-sm font-medium text-gray-700">Município:</label>
+                        <select name="mun_filial" id="mun_filial" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Selecione o município</option>
                             @foreach($municipios as $municipio)
                                 <option value="{{ $municipio->id_mun }}">{{ $municipio->nome }}</option>
                             @endforeach
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                {{-- Estado --}}
-                <div class="form-group">
-                    <label for="uf_filial">Estado: </label>
-                    <select name="uf_filial" id="uf_filial" required> 
-                        <option value="">Selecione o estado</option>
+                    <div>
+                        <label for="uf_filial" class="block text-sm font-medium text-gray-700">Estado:</label>
+                        <select name="uf_filial" id="uf_filial" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Selecione o estado</option>
                             @foreach($estados as $uf)
                                 <option value="{{ $uf->id_est }}">{{ $uf->uf }}</option>
                             @endforeach
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                {{-- Botões para ações do popup --}}
-                <div class="actions">
-                    <button  type="button" class="submit-btn" onclick="FecharPopupFilial()">Cancelar</button>
-                    <button type="submit" class="submit-btn">Concluir</button>
-                </div>
-            </form>
+                    <div class="flex justify-end space-x-2 pt-4">
+                        <button type="button" onclick="FecharPopupFilial()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Concluir</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    {{-- Popup de cadastro de empresa --}}
-    <div class="popup-container" id="PopupEmpresa">
-        <div class="popup">
-            <form action="{{ route('empresa.store') }}" method="POST" id="FormEmpresa">
-                @csrf
-                <h2>Cadastrar uma empresa</h2>
-                <input type="hidden" name="tipo_registro" value="empresa">
 
-                {{-- Tipo de empresa --}}
-                <div class="form-group">
-                    <label for="tipo_empresa">Tipo de empresa: </label>
+        {{-- Popup de cadastro de empresa --}}
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden" id="PopupEmpresa">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <form action="{{ route('empresa.store') }}" method="POST" id="FormEmpresa" class="space-y-4">
+                    @csrf
+                    <h2 class="text-xl font-bold text-gray-800">Cadastrar uma empresa</h2>
+                    <input type="hidden" name="id_temp" value="empresa">
 
-                    <select name="tipo_empresa" id="tipo_empresa" required> 
-                        <option value="">Selecione o tipo de empresa</option>
+                    <div>
+                        <label for="tipo_empresa" class="block text-sm font-medium text-gray-700">Tipo de empresa:</label>
+                        <select name="id_temp" id="tipo_empresa" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Selecione o tipo de empresa</option>
                             @foreach($tipo_empresas as $tipo)
                                 <option value="{{ $tipo->id_temp }}">{{ $tipo->nome }}</option>
                             @endforeach
-                    </select>
-                </div>
-                
-                {{-- Nome fantasia --}}
-                <div class="form-group">
-                    <label for="nome_empresa">Nome fantasia: </label>
-                    <input type="text" id="nome_empresa" name="nome_empresa" placeholder="Vértice Soluções" required>
-                </div>
+                        </select>
+                    </div>
 
-                {{-- Razão social --}}
-                <div class="form-group">
-                    <label for="razao_empresa">Razão social: </label>
-                    <input type="text" id="razao_empresa" name="razao_empresa" placeholder="Alpha Inovação Digital Ltda." required>
-                </div>
+                    <div>
+                        <label for="nome_empresa" class="block text-sm font-medium text-gray-700">Nome fantasia:</label>
+                        <input type="text" id="nome_empresa" name="nome_fans" placeholder="Vértice Soluções" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- CNPJ --}}
-                <div class="form-group">
-                    <label for="cnpj_empresa">CNPJ: </label>
-                    <input type="number" id="cnpj_empresa" name="cnpj_empresa" placeholder="12.345.678/0001-99" required>
-                </div>
+                    <div>
+                        <label for="razao_empresa" class="block text-sm font-medium text-gray-700">Razão social:</label>
+                        <input type="text" id="razao_empresa" name="razao_social" placeholder="Alpha Inovação Digital Ltda." required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- IE --}}
-                <div class="form-group">
-                    <label for="ie_empresa">IE: </label>
-                    <input type="number" id="ie_empresa" name="ie_empresa" placeholder="234567895467" required>
-                </div>
+                    <div>
+                        <label for="cnpj_empresa" class="block text-sm font-medium text-gray-700">CNPJ:</label>
+                        <input type="number" id="cnpj_empresa" name="cnpj" placeholder="12.345.678/0001-99" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- IM --}}
-                <div class="form-group">
-                    <label for="im_empresa">IM: </label>
-                    <input type="number" id="im_empresa" name="im_empresa" placeholder="234567895467" required>
-                </div>
+                    <div>
+                        <label for="ie_empresa" class="block text-sm font-medium text-gray-700">IE:</label>
+                        <input type="number" id="ie_empresa" name="ie" placeholder="234567895467" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- E-mail --}}
-                <div class="form-group">
-                    <label for="email_empresa">E-mail: </label>
-                    <input type="email" id="email_empresa" name="email_empresa" placeholder="contato@empresa.com.br" required>
-                </div>
+                    <div>
+                        <label for="im_empresa" class="block text-sm font-medium text-gray-700">IM:</label>
+                        <input type="number" id="im_empresa" name="im" placeholder="234567895467" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- Telefone --}}
-                <div class="form-group">
-                    <label for="tel_empresa">Telefone: </label>
-                    <input type="number" id="tel_empresa" name="tel_empresa" placeholder="5588982332134" required>
-                </div>
+                    <div>
+                        <label for="email_empresa" class="block text-sm font-medium text-gray-700">E-mail:</label>
+                        <input type="email" id="email_empresa" name="email" placeholder="contato@empresa.com.br" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
 
-                {{-- Botões para ações do popup --}}
-                <div class="actions">
-                    <button  type="button" class="submit-btn" onclick="FecharPopupEmpresa()">Cancelar</button>
-                    <button type="submit" class="submit-btn">Concluir</button>
-                </div>
-            </form>
+                    <div>
+                        <label for="tel_empresa" class="block text-sm font-medium text-gray-700">Telefone:</label>
+                        <input type="number" id="tel_empresa" name="telefone" placeholder="5588982332134" required class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                    </div>
+
+                    <div class="flex justify-end space-x-2 pt-4">
+                        <button type="button" onclick="FecharPopupEmpresa()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Concluir</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

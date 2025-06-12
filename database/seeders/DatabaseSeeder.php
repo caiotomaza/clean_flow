@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder{
 
         // Chamando os seeders relacionados aos modelos acima
         $this->call([
+            ResiduoSeeder::class,
             ResiduosChesSeeder::class,
             ResiduosSaisSeeder::class,
             ArmazenamentosSeeder::class,

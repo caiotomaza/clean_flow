@@ -45,14 +45,14 @@
         </div>
 
         <!-- Pesquisa e ícones -->
-        <div class="flex items-center mt-4 md:mt-0 space-x-4">
+        {{-- <div class="flex items-center mt-4 md:mt-0 space-x-4">
             <input type="text" placeholder="Buscando por algo?" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
 
             <button class="text-xl hover:text-blue-600 transition" id="settings-btn">⚙️</button>
             <button class="relative text-xl hover:text-blue-600 transition" id="notifications-btn">
                 <img src="{{ asset('assets/img/bellNotification.svg')}}" alt="" class="w-8 h-8">
                 <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 rounded-full">2</span>
-            </button>
+            </button> --}}
 
             <!-- Botão de logout -->
             <form method="POST" action="{{ route('logout') }}">

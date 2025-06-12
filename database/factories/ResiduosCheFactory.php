@@ -20,11 +20,13 @@ class ResiduosCheFactory extends Factory
      */
     public function definition(): array
     {
+        $sub = \App\Models\SubResiduos::inRandomOrder()->first();
+        
         return [
             'id_filial' => Filial::inRandomOrder()->value('id_fil'),
             'id_vec' => Veiculo::inRandomOrder()->value('id_vec'),
-            'id_resd' => Residuos::inRandomOrder()->value('id_resd'), // corrigido
-            'id_sub_resd' => SubResiduos::inRandomOrder()->value('id_sub_resd'), // ajuste conforme nome da PK
+            'id_resd' => $sub->id_resd, // pega o resíduo correspondente ao sub
+            'id_sub_resd' => $sub->id_sub_resd,
             'id_responsavel' => User::inRandomOrder()->value('id'),
             'tipo_registro' => $this->faker->randomElement(['entrada', 'saida']),
             'peso' => $this->faker->randomFloat(2, 10, 1000),

@@ -1,21 +1,27 @@
 <?php
 
-    namespace App\Models;
+namespace App\Models;
 
-    use Illuminate\Database\Eloquent\Factories\HasFactory;
-    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-    class SubResiduos extends Model{
-        use HasFactory;
+class SubResiduos extends Model{
+    use HasFactory;
 
-        protected $table = 'sub_residuos';
+    protected $table = 'sub_residuos';
 
-        protected $primaryKey = 'id_sub_resd';
-        public $incrementing = true;
-        protected $keyType = 'int';
+    protected $primaryKey = 'id_sub_resd';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
-        protected $fillable = ['id_resd', 'nome'];
-        
-        public $timestamps = false;
+    protected $fillable = ['id_resd', 'nome'];
+    
+    public $timestamps = false;
+
+    
+    public function residuo()
+    {
+        return $this->belongsTo(Residuos::class, 'id_resd', 'id_resd');
     }
+}
 ?>
