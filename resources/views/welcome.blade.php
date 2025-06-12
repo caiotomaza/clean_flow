@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>Add commentMore actions
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <title>Clean Flow - Gerenciamento Inteligente de Resíduos</title>
