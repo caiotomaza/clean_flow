@@ -6,100 +6,71 @@ A aplicação principal é web, acessada pelo navegador, e conta também com uma
 
 ---
 
-## 📌 - Tecnologias Utilizadas
+## 📌 - Comandos para iniciar
 
-- **Laravel**
-- **PHP**
-- **Nginx**
-- **MySQL**
-- **Redis**
-- **phpMyAdmin**
-- **Docker Compose**
-
----
-
-## 🚀 - Como Rodar o Projeto
-
-### 🔧 - Pré-requisitos
-
-Antes de começar, você precisa ter o seguinte instalado na sua máquina:
-
-- [Docker](https://www.docker.com/)
-
----
-
-### ▶️ - Rodando o Projeto
-
-1. Copie e cole o arquivo `.env.example`, renomeando-o para `.env`
-
-2. Dentro do arquivo `.env`, substitua as variáveis conforme o padrão abaixo:
-
-```env
-
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=cleanflow
-DB_USERNAME=cleanflow
-DB_PASSWORD=cleanflow1234
-
-REDIS_CLIENT=phpredis
-REDIS_HOST=redis
-REDIS_PORT=6379
-
+### Clona o repositorio preparado para a hostinger
+```bash
+git clone --single-branch --branch deploy https://github.com/caiotomaza/clean_flow.git
 ```
 
-3. **Subir os containers do projeto**  
-   ```bash
-   docker-compose up -d
-   ```
+### Entra na pasta do projeto
+```bash
+cd clean_flow
+```
 
-4. **Acessar o container do back-end**  
-   ```bash
-   docker exec -it cleanflow_php bash
-   ```
+### Sobe os conteiner do docker
+```bash
+docker compose up -d
+```
 
-5. **Instalar as dependências do Laravel**  
-   ```bash
-   composer install
-   ```
+### Executa o bash no conteiner de back-end
+```bash
+docker exec -it cleanflow_php bash
+```
 
-6. **Gerar a chave do projeto Laravel**  
-   ```bash
-   php artisan key:generate
-   ```
+### Sobe as dependecias do Laravel
+```bash
+composer install
+```
 
-7. **Criar as tabelas no banco de dados**  
-   ```bash
-   php artisan migrate
-   ```
+### Gera a Key do Laravel
+```bash
+php artisan key:generate
+```
 
-8. **Criar as seeds e factories no banco de dados para testes**  
-   ```bash
-   php artisan db:seed
-   ```
+### Cria o db
+```bash
+php artisan migrate
+```
 
+### Cria as factores e as seeds
+```bash
+php artisan db:seed
+```
 
-### 🎯 Acesse o Projeto  
+### Da a permissão necessaria para o conteiner do back-end
+```bash
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+```
 
-- **Front-end:** [http://localhost/](http://localhost/)  
-- **phpMyAdmin:** [http://localhost:8082](http://localhost:8082)
+## 🔄 Comandos uteis
 
-## ➕ Comandos Úteis  
-
-### 🔄 Limpar o cache e imagens do Docker
-
+### Limpeza de cache
 ```bash
 docker system prune -a
 ```
+
 ### Subir os containers 
 ```bash
 docker-compose up -d
 ```
+
 ### Remover containers
 ```bash
 docker-compose down
 ```
+
 ### Reset do data base
 ```bash
 php artisan migrate:fresh --seed
@@ -108,4 +79,9 @@ php artisan migrate:fresh --seed
 ### Executa os teste automaticos
 ```bash
 php artisan test
+```
+
+### Excluir a pasta
+```bash
+rm -R clean_flow
 ```

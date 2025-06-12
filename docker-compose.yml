@@ -32,10 +32,10 @@ services:
     container_name: cleanflow_mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
-      MYSQL_USER: ${DB_USERNAME:-username}
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: cleanflow1234
+      MYSQL_USER: cleanflow
       MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
     ports:
       - "3306:3306"
@@ -43,6 +43,7 @@ services:
       - cleanflow
     volumes:
       - cleanflow_mysql_data:/var/lib/mysql
+      - ./mysql-conf/my.cnf:/etc/mysql/conf.d/my.cnf:ro
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
