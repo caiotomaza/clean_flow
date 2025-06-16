@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Usuário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      width: 360px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .modal h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    .close {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      font-size: 18px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 24px;
+      font-size: 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .btn-cancelar {
+      background-color: #e0e0e0;
+      color: #000;
+    }
+
+    .btn-confirmar {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal">
+    <span class="close" onclick="fecharModal()">×</span>
+    <h2>Cadastrar Usuário</h2>
+    <form id="formCadastro">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" value="João da Silva" required>
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" value="joaodasilva@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+      </div>
+      <div class="buttons">
+        <button type="button" class="btn btn-cancelar" onclick="fecharModal()">Cancelar</button>
+        <button type="submit" class="btn btn-confirmar">Confirmar</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function fecharModal() {
+      alert("Modal fechado!");
+      // Aqui você poderia esconder o modal ou redirecionar
+    }
+
+    document.getElementById("formCadastro").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const cpf = document.getElementById("cpf").value;
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      alert(`Usuário ${nome} cadastrado com sucesso!\nCPF: ${cpf}\nEmail: ${email}`);
+    });
+  </script>
+
+</body>
+</html>

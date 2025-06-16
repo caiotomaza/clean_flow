@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório Diário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-box {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 600px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row .form-group {
+      flex: 1;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin: 15px 0 5px;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-limpar {
+      background-color: #e74c3c;
+    }
+
+    .btn-rascunho {
+      background-color: #2c3e50;
+    }
+
+    .btn-enviar {
+      background-color: #2ecc71;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .file-input {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .file-input button {
+      padding: 6px 12px;
+      border-radius: 6px;
+      background-color: #ccc;
+      border: none;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Relatório Diário</h2>
+    <form>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="data">Data</label>
+          <input type="date" id="data" name="data" value="2025-03-11">
+        </div>
+        <div class="form-group">
+          <label for="unidade">Unidade</label>
+          <select id="unidade" name="unidade">
+            <option>Selecione</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="responsavel">Responsável</label>
+          <input type="text" id="responsavel" name="responsavel" placeholder="Responsável">
+        </div>
+      </div>
+
+      <p class="section-title">1. Resíduos Coletados</p>
+      <div class="row">
+        <div class="form-group">
+          <label>Recicláveis (Kg)</label>
+          <input type="text" placeholder="200,00">
+        </div>
+        <div class="form-group">
+          <label>Orgânicos (Kg)</label>
+          <input type="text" placeholder="200,00">
+        </div>
+        <div class="form-group">
+          <label>Rejeitos (Kg)</label>
+          <input type="text" placeholder="200,00">
+        </div>
+        <div class="form-group">
+          <label>Total (Kg)</label>
+          <input type="text" placeholder="600,00">
+        </div>
+      </div>
+
+      <p class="section-title">2. Indicadores de Não Conformidade</p>
+      <div class="row">
+        <div class="form-group">
+          <label>Não conformidades identificadas</label>
+          <input type="text" placeholder="Ex: descarte irregular">
+        </div>
+        <div class="form-group">
+          <label>Reclamações</label>
+          <input type="text" placeholder="xxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <p class="section-title">3. Dados Ambientais</p>
+      <div class="row">
+        <div class="form-group">
+          <label>Redução de consumo</label>
+          <input type="text" placeholder="xxxxxxxxxxxxx">
+        </div>
+        <div class="form-group">
+          <label>Resíduos para o aterro</label>
+          <input type="text" placeholder="xxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <p class="section-title">4. Incidentes e Ocorrências</p>
+      <div class="row">
+        <div class="form-group">
+          <label>Acidente de Trabalho</label>
+          <input type="text" placeholder="xxxxxxxxxxxxx">
+        </div>
+        <div class="form-group">
+          <label>Problemas Operacionais</label>
+          <input type="text" placeholder="xxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Observações</label>
+        <input type="text" placeholder="xxxxxxxxxxxxx">
+      </div>
+
+      <div class="form-group">
+        <label>Anexar Documentos</label>
+        <div class="file-input">
+          <button type="button">Anexar</button>
+          <span>Nenhum arquivo selecionado</span>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="reset" class="btn btn-limpar">Limpar</button>
+        <button type="button" class="btn btn-rascunho">Salvar Rascunho</button>
+        <button type="submit" class="btn btn-enviar">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
