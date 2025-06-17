@@ -23,6 +23,7 @@
     use App\Http\Controllers\Mobile\EntradaMobileController;
     use App\Http\Controllers\Mobile\ArmMobileController;
     use App\Http\Controllers\Mobile\SaidaMobileController;
+    use App\Http\Controllers\Mobile\ConsultaMobileController;
 
     // API Mobile
     Route::get('/mobile/teste_api', [TesteMobileController::class, 'teste_api']);
@@ -34,6 +35,10 @@
     Route::get('/mobile/armazenamento', [ArmMobileController::class, 'armazenamento']);
     Route::post('/mobile/entrada/store', [EntradaMobileController::class, 'store']);
     Route::post('/mobile/saida/store', [SaidaMobileController::class, 'store']);
+
+    Route::get('/mobile/entradas', [ConsultaMobileController::class, 'getEntradas']);
+    Route::get('/mobile/saidas', [ConsultaMobileController::class, 'getSaidas']);
+    Route::get('/mobile/armazenamentos', [ConsultaMobileController::class, 'getArmazenamentos']);
 
     require __DIR__ . '/auth.php';
 

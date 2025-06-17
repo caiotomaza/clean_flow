@@ -50,5 +50,9 @@
             return $this->belongsTo(Filial::class, 'id_filial', 'id_fil');
         }
 
+        public function veiculo()
+        {
+            return $this->belongsTo(Veiculo::class, 'id_vec', 'id_vec'); 
+        }
     }
 ?>
