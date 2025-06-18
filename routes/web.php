@@ -14,32 +14,6 @@
     use App\Http\Controllers\DB\EmpresaController;
     use App\Models\SubResiduos;
 
-    use App\Http\Controllers\Mobile\TesteMobileController;
-    use App\Http\Controllers\Mobile\UserMobileController;
-    use App\Http\Controllers\Mobile\FilialMobileController;
-    use App\Http\Controllers\Mobile\VeiculoMobileController;
-    use App\Http\Controllers\Mobile\ResiduosMobileController;
-    use App\Http\Controllers\Mobile\SubResiduosMobileController;
-    use App\Http\Controllers\Mobile\EntradaMobileController;
-    use App\Http\Controllers\Mobile\ArmMobileController;
-    use App\Http\Controllers\Mobile\SaidaMobileController;
-    use App\Http\Controllers\Mobile\ConsultaMobileController;
-
-    // API Mobile
-    Route::get('/mobile/teste_api', [TesteMobileController::class, 'teste_api']);
-    Route::get('/mobile/usuarios', [UserMobileController::class, 'usuarios']);
-    Route::get('/mobile/filial', [FilialMobileController::class, 'filial']);
-    Route::get('/mobile/veiculos', [VeiculoMobileController::class, 'veiculos']);
-    Route::get('/mobile/residuos', [ResiduosMobileController::class, 'residuos']);
-    Route::get('/mobile/sub_residuos', [SubResiduosMobileController::class, 'sub_residuos']);
-    Route::get('/mobile/armazenamento', [ArmMobileController::class, 'armazenamento']);
-    Route::post('/mobile/entrada/store', [EntradaMobileController::class, 'store']);
-    Route::post('/mobile/saida/store', [SaidaMobileController::class, 'store']);
-
-    Route::get('/mobile/entradas', [ConsultaMobileController::class, 'getEntradas']);
-    Route::get('/mobile/saidas', [ConsultaMobileController::class, 'getSaidas']);
-    Route::get('/mobile/armazenamentos', [ConsultaMobileController::class, 'getArmazenamentos']);
-
     require __DIR__ . '/auth.php';
 
     // Welcome
